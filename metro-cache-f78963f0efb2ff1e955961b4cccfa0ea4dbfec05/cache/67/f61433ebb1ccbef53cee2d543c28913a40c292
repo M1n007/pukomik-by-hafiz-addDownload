@@ -8,6 +8,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
     var initalState = {
         pageList: [],
         loadQueue: [],
+        currentId: 0,
         isLoading: false,
         isFailed: false,
         isCompleted: false

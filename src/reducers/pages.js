@@ -1,6 +1,7 @@
 const initalState = {
     pageList: [],
     loadQueue: [],
+    currentId: 0,
     isLoading: false,
     isFailed: false,
     isCompleted: false

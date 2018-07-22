@@ -21,25 +21,13 @@ class Pages extends Component {
     }
 
   async componentDidMount(){
-    // let currentId = await this.props.navigation.getParam('id')
-    let currentId = await this.props.chapterId
-
     this.setState({
-      currentId
+      currentId: this.props.pagesReducer.pageList[0].chapter_id
     })
 
     this.getTotalPage()
-
-
-    // this.getPages(this.state.currentId)
   }
 
-  // getPages = (id)=>{
-  //   this.props.dispatch(getPages(id)).then(()=>{
-  //     this.getTotalPage()
-  //   })
-  // }
-  
   loadHandle (i) {
     let loadQueue = this.state.loadQueue
     loadQueue[i] = 1
@@ -82,7 +70,7 @@ class Pages extends Component {
       }
       else{
         this.setState({
-          currentId: nextChapter.id
+          // currentId: nextChapter.id
         })
 
         this.props.dispatch(getPages(nextChapter.id))
@@ -101,7 +89,7 @@ class Pages extends Component {
 
       if(this.getCurrentIndexId() != this.props.chapterListReducer.data.length - 1){
        this.setState({
-         currentId: previousChapter.id
+        //  currentId: previousChapter.id
        })
       //  this.getPages(previousChapter.id)
       this.props.dispatch(getPages(previousChapter.id))

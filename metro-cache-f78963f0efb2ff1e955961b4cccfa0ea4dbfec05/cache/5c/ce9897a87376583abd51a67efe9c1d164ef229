@@ -111,9 +111,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
           if (_this.getCurrentIndexId() == 0) {
             alert('anda berada di ujung chapter');
           } else {
-            _this.setState({
-              currentId: nextChapter.id
-            });
+            _this.setState({});
 
             _this.props.dispatch((0, _pages.getPages)(nextChapter.id));
           }
@@ -123,9 +121,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
           var previousChapter = _this.props.chapterListReducer.data[_this.getCurrentIndexId() + 1];
 
           if (_this.getCurrentIndexId() != _this.props.chapterListReducer.data.length - 1) {
-            _this.setState({
-              currentId: previousChapter.id
-            });
+            _this.setState({});
 
             _this.props.dispatch((0, _pages.getPages)(previousChapter.id));
           }
@@ -136,22 +132,16 @@ __d(function (global, _require, module, exports, _dependencyMap) {
     _createClass(Pages, [{
       key: "componentDidMount",
       value: function componentDidMount() {
-        var currentId;
         return regeneratorRuntime.async(function componentDidMount$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
-                return regeneratorRuntime.awrap(this.props.chapterId);
-
-              case 2:
-                currentId = _context.sent;
                 this.setState({
-                  currentId: currentId
+                  currentId: this.props.pagesReducer.pageList[0].chapter_id
                 });
                 this.getTotalPage();
 
-              case 5:
+              case 2:
               case "end":
                 return _context.stop();
             }
@@ -180,14 +170,14 @@ __d(function (global, _require, module, exports, _dependencyMap) {
             },
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 115
+              lineNumber: 103
             }
           },
           _react3.default.createElement(_reactNative.StatusBar, {
             hidden: true,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 116
+              lineNumber: 104
             }
           }),
           _react3.default.createElement(
@@ -196,7 +186,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
               style: styles.page,
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 117
+                lineNumber: 105
               }
             },
             _react3.default.createElement(
@@ -207,7 +197,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                 },
                 __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 118
+                  lineNumber: 106
                 }
               },
               JSON.stringify(this.state)
@@ -218,7 +208,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                 style: styles.pageText,
                 __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 119
+                  lineNumber: 107
                 }
               },
               this.state.page.index,
@@ -236,7 +226,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
               },
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 121
+                lineNumber: 109
               }
             },
             _react3.default.createElement(
@@ -252,7 +242,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                 },
                 __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 126
+                  lineNumber: 114
                 }
               },
               this.props.pagesReducer.pageList.map(function (item, i) {
@@ -262,7 +252,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                     style: styles.slide,
                     __source: {
                       fileName: _jsxFileName,
-                      lineNumber: 137
+                      lineNumber: 125
                     }
                   },
                   _react3.default.createElement(_reactNativePhotoView2.default, {
@@ -281,7 +271,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                     },
                     __source: {
                       fileName: _jsxFileName,
-                      lineNumber: 138
+                      lineNumber: 126
                     }
                   }),
                   !!!_this2.state.loadQueue[i] && _react3.default.createElement(
@@ -290,7 +280,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                       style: styles.loadingView,
                       __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 150
+                        lineNumber: 138
                       }
                     },
                     _react3.default.createElement(_reactNative.Image, {
@@ -298,7 +288,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                       source: loading,
                       __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 151
+                        lineNumber: 139
                       }
                     })
                   )
