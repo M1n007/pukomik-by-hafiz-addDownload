@@ -1,0 +1,33 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+    exports.getChapterList = undefined;
+
+    var _axios = _require(_dependencyMap[0], "axios");
+
+    var _axios2 = _interopRequireDefault(_axios);
+
+    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+    function getChapterList(id) {
+        return {
+            type: 'GET_CHAPTER_LIST',
+            payload: (0, _axios2.default)({
+                method: 'POST',
+                url: 'http://192.168.43.142/api/get_chapters.php',
+                headers: {
+                    'content-type': 'application/x-www-form-urlencoded'
+                },
+                data: {
+                    id: id,
+                    start: 0,
+                    rows: 9999,
+                    key: 'da3a9900-5c2e-4ee1-a660-94929dddf08e'
+                }
+            })
+        };
+    }
+
+    exports.getChapterList = getChapterList;
+});

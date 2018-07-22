@@ -1,0 +1,357 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _react2 = _require(_dependencyMap[0], "react");
+
+    var _react3 = _interopRequireDefault(_react2);
+
+    var _index = _require(_dependencyMap[1], "./../../../node_modules/react-transform-hmr/lib/index.js");
+
+    var _index2 = _interopRequireDefault(_index);
+
+    var _jsxFileName = "/home/neo/NodeJS/Rn/pukomikcom/src/screens/main/Browse.js";
+
+    var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+    var _reactNative = _require(_dependencyMap[2], "react-native");
+
+    var _nativeBase = _require(_dependencyMap[3], "native-base");
+
+    var _reactRedux = _require(_dependencyMap[4], "react-redux");
+
+    var _browse = _require(_dependencyMap[5], "../../actions/browse");
+
+    var browseAction = _interopRequireWildcard(_browse);
+
+    function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+    function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+    var _components = {
+        Browse: {
+            displayName: "Browse"
+        }
+    };
+
+    var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+        filename: "/home/neo/NodeJS/Rn/pukomikcom/src/screens/main/Browse.js",
+        components: _components,
+        locals: [module],
+        imports: [_react3.default]
+    });
+
+    function _wrapComponent(id) {
+        return function (Component) {
+            return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+        };
+    }
+
+    var screenWidth = _reactNative.Dimensions.get('window').width;
+
+    var imgResize = screenWidth / 65.25;
+    var rows = 5;
+
+    var Browse = _wrapComponent("Browse")(function (_Component) {
+        _inherits(Browse, _Component);
+
+        function Browse() {
+            var _ref;
+
+            var _temp, _this, _ret;
+
+            _classCallCheck(this, Browse);
+
+            for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+                args[_key] = arguments[_key];
+            }
+
+            return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Browse.__proto__ || Object.getPrototypeOf(Browse)).call.apply(_ref, [this].concat(args))), _this), _this.handleOnPull = function () {
+                _this.getReset();
+            }, _this.handleOnReach = function () {
+                _this.props.dispatch(browseAction.getMangas(_this.props.browseReducer.startPage, rows));
+            }, _this._keyExtractor = function (item, index) {
+                return item.id;
+            }, _this._onPressItem = function () {
+                alert('list onpress');
+            }, _this._renderItem = function (_ref2) {
+                var item = _ref2.item;
+                return _react3.default.createElement(
+                    _nativeBase.ListItem,
+                    {
+                        onPress: function onPress() {
+                            return _this.props.navigation.navigate('MangaDetails', {
+                                id: item.id
+                            });
+                        },
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 39
+                        }
+                    },
+                    _react3.default.createElement(
+                        _nativeBase.Body,
+                        {
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 40
+                            }
+                        },
+                        _react3.default.createElement(
+                            _reactNative.View,
+                            {
+                                style: styles.listWrapper,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 41
+                                }
+                            },
+                            _react3.default.createElement(
+                                _reactNative.View,
+                                {
+                                    style: styles.listItem,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 43
+                                    }
+                                },
+                                _react3.default.createElement(_reactNative.Image, {
+                                    style: styles.listImage,
+                                    source: {
+                                        uri: item.img
+                                    },
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 44
+                                    }
+                                }),
+                                _react3.default.createElement(
+                                    _reactNative.View,
+                                    {
+                                        style: styles.listItemContent,
+                                        __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 48
+                                        }
+                                    },
+                                    _react3.default.createElement(
+                                        _reactNative.Text,
+                                        {
+                                            style: styles.listItemTitle,
+                                            __source: {
+                                                fileName: _jsxFileName,
+                                                lineNumber: 49
+                                            }
+                                        },
+                                        item.title
+                                    ),
+                                    _react3.default.createElement(
+                                        _reactNative.View,
+                                        {
+                                            style: styles.listItemScoreWrapper,
+                                            __source: {
+                                                fileName: _jsxFileName,
+                                                lineNumber: 50
+                                            }
+                                        },
+                                        _react3.default.createElement(
+                                            _reactNative.Text,
+                                            {
+                                                style: styles.listItemScore,
+                                                __source: {
+                                                    fileName: _jsxFileName,
+                                                    lineNumber: 51
+                                                }
+                                            },
+                                            item.score
+                                        )
+                                    ),
+                                    _react3.default.createElement(
+                                        _reactNative.Text,
+                                        {
+                                            style: styles.listItemPopularity,
+                                            __source: {
+                                                fileName: _jsxFileName,
+                                                lineNumber: 53
+                                            }
+                                        },
+                                        "Popularity #",
+                                        item.popularity
+                                    ),
+                                    _react3.default.createElement(
+                                        _reactNative.Text,
+                                        {
+                                            style: styles.listItemRanked,
+                                            __source: {
+                                                fileName: _jsxFileName,
+                                                lineNumber: 54
+                                            }
+                                        },
+                                        "Ranked #",
+                                        item.ranked
+                                    )
+                                )
+                            ),
+                            _react3.default.createElement(_reactNative.View, {
+                                style: styles.listItemBookmark,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 58
+                                }
+                            })
+                        )
+                    )
+                );
+            }, _temp), _possibleConstructorReturn(_this, _ret);
+        }
+
+        _createClass(Browse, [{
+            key: "componentDidMount",
+            value: function componentDidMount() {
+                this.props.dispatch(browseAction.getMangas(0, rows));
+            }
+        }, {
+            key: "getReset",
+            value: function getReset() {
+                return regeneratorRuntime.async(function getReset$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                            case 0:
+                                _context.next = 2;
+                                return regeneratorRuntime.awrap(this.props.dispatch({
+                                    type: 'GET_MANGAS_RESET'
+                                }));
+
+                            case 2:
+                                this.props.dispatch(browseAction.getMangas(0, rows));
+
+                            case 3:
+                            case "end":
+                                return _context.stop();
+                        }
+                    }
+                }, null, this);
+            }
+        }, {
+            key: "render",
+            value: function render() {
+                return _react3.default.createElement(
+                    _nativeBase.Container,
+                    {
+                        style: styles.mainWrapper,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 78
+                        }
+                    },
+                    _react3.default.createElement(_reactNative.FlatList, {
+                        refreshing: this.props.browseReducer.isLoading,
+                        onRefresh: this.handleOnPull,
+                        onEndReachedThreshold: 0.5,
+                        onEndReached: this.handleOnReach,
+                        data: this.props.browseReducer.data,
+                        extraData: this.props.browseReducer,
+                        keyExtractor: this._keyExtractor,
+                        renderItem: this._renderItem,
+                        ListEmptyComponent: this.listEmptyData,
+                        ListFooterComponent: this.listFooterComponent,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 82
+                        }
+                    })
+                );
+            }
+        }]);
+
+        return Browse;
+    }(_react2.Component));
+
+    var mapStateToProps = function mapStateToProps(state) {
+        return {
+            browseReducer: state.browseReducer
+        };
+    };
+
+    exports.default = (0, _reactRedux.connect)(mapStateToProps)(Browse);
+
+    var styles = _reactNative.StyleSheet.create({
+        mainWrapper: {
+            backgroundColor: 'white'
+        },
+        listWrapper: {
+            flex: 1,
+            flexDirection: 'row'
+        },
+        listItem: {
+            flex: 5,
+            flexDirection: 'row',
+            paddingRight: 10
+        },
+        listImage: {
+            width: imgResize * 20,
+            height: imgResize * 30,
+            borderRadius: 8
+        },
+        listItemContent: {
+            paddingLeft: 10,
+            paddingRight: 20
+        },
+        listItemTitle: {
+            color: '#121212'
+        },
+        listItemScoreWrapper: {
+            backgroundColor: '#f16334',
+            borderRadius: 50,
+            width: 35,
+            marginTop: 2,
+            marginBottom: 10
+        },
+        listItemScore: {
+            textAlign: 'center',
+            color: 'white',
+            fontSize: 11
+        },
+        listItemPopularity: {
+            fontSize: 12,
+            color: '#878787'
+        },
+        listItemRanked: {
+            fontSize: 12,
+            color: '#878787'
+        },
+        listItemBookmark: {
+            alignSelf: 'center',
+            flex: 1
+        },
+        listItemBookmarkIconWrapper: {
+            width: 25,
+            height: 25,
+            alignItems: 'center',
+            justifyContent: 'center'
+        },
+        listItemBookmarkIcon: {
+            color: 'red',
+            fontSize: 15
+        },
+        noDataWrapper: {
+            alignSelf: 'center',
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: '#f4f4f4',
+            borderRadius: 50,
+            margin: 20,
+            paddingTop: 5,
+            paddingBottom: 5,
+            paddingLeft: 15,
+            paddingRight: 15
+        }
+    });
+});

@@ -1,0 +1,100 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _react2 = _require(_dependencyMap[0], "react");
+
+  var _react3 = _interopRequireDefault(_react2);
+
+  var _index = _require(_dependencyMap[1], "./node_modules/react-transform-hmr/lib/index.js");
+
+  var _index2 = _interopRequireDefault(_index);
+
+  var _jsxFileName = "/home/neo/NodeJS/Rn/pukomikcom/App.js";
+
+  var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+  var _reactRedux = _require(_dependencyMap[2], "react-redux");
+
+  var _redux = _require(_dependencyMap[3], "redux");
+
+  var _reduxLogger = _require(_dependencyMap[4], "redux-logger");
+
+  var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
+
+  var _reduxPromiseMiddleware = _require(_dependencyMap[5], "redux-promise-middleware");
+
+  var _reduxPromiseMiddleware2 = _interopRequireDefault(_reduxPromiseMiddleware);
+
+  var _reducers = _require(_dependencyMap[6], "./src/reducers");
+
+  var _reducers2 = _interopRequireDefault(_reducers);
+
+  var _AppNavigator = _require(_dependencyMap[7], "./src/navigators/AppNavigator");
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+  function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+  function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+  var _components = {
+    Apps: {
+      displayName: "Apps"
+    }
+  };
+
+  var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+    filename: "/home/neo/NodeJS/Rn/pukomikcom/App.js",
+    components: _components,
+    locals: [module],
+    imports: [_react3.default]
+  });
+
+  function _wrapComponent(id) {
+    return function (Component) {
+      return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+    };
+  }
+
+  var store = (0, _redux.createStore)(_reducers2.default, (0, _redux.applyMiddleware)(_AppNavigator.middleware, _reduxLogger2.default, (0, _reduxPromiseMiddleware2.default)()));
+
+  var Apps = _wrapComponent("Apps")(function (_React$Component) {
+    _inherits(Apps, _React$Component);
+
+    function Apps() {
+      _classCallCheck(this, Apps);
+
+      return _possibleConstructorReturn(this, (Apps.__proto__ || Object.getPrototypeOf(Apps)).apply(this, arguments));
+    }
+
+    _createClass(Apps, [{
+      key: "render",
+      value: function render() {
+        return _react3.default.createElement(
+          _reactRedux.Provider,
+          {
+            store: store,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 16
+            }
+          },
+          _react3.default.createElement(_AppNavigator.AppNavigator, {
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 17
+            }
+          })
+        );
+      }
+    }]);
+
+    return Apps;
+  }(_react3.default.Component));
+
+  exports.default = Apps;
+});
