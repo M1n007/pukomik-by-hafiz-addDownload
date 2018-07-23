@@ -25,6 +25,7 @@ class Pages extends Component {
 
     state = {
         currentId: 0,
+        chapter:0,
         loadQueue: [],
         page:{
             index: 1,
@@ -33,8 +34,10 @@ class Pages extends Component {
     }
 
   async componentDidMount(){
+    // alert(JSON.stringify(this.props.pagesReducer))
     this.setState({
-      currentId: this.props.pagesReducer.pageList[0].chapter_id
+      currentId: this.props.pagesReducer.pageList[0].chapter_id,
+      chapter: this.props.pagesReducer.pageList[0].chapter
     })
 
     this.getTotalPage()
@@ -78,7 +81,7 @@ class Pages extends Component {
       let nextChapter = this.props.chapterListReducer.data[this.getCurrentIndexId()-1]
 
       if(this.getCurrentIndexId() == 0){
-        alert('anda berada di ujung chapter')
+        alert('Anda berada di ujung chapter')
       }
       else{
         this.setState({
@@ -115,8 +118,8 @@ class Pages extends Component {
       <View style={{flex: 1}}>
         <StatusBar hidden={true}  />
         <View style={styles.page}>
-          <Text style={{color:'white'}}>{JSON.stringify(this.state)}</Text>
-          <Text style={styles.pageText}>{this.state.page.index}/{this.state.page.total}</Text>
+          {/* <Text style={{color:'white'}}>{JSON.stringify(this.state)}</Text> */}
+          <Text style={styles.pageText}>{this.state.page.index}/{this.state.page.total} #{this.state.chapter}</Text>
         </View>
         <GestureRecognizer
           onSwipeLeft={this.nextChapter}

@@ -1,6 +1,5 @@
 initialState = {
     data: [],
-    modal: false,
     isLoading: false,
     isFailed: false
 }
@@ -26,12 +25,8 @@ const chapterListReducer = (state = initialState, action)=>{
             isLoading: false,
             isFailed: true
         }
-
-        case 'MODAL_ACTION':
-        return {
-            ...state,
-            modal: !state.modal
-        }
+        case 'RESET_CHAPTER_LIST' :
+        return initialState
 
         default :
         return state
