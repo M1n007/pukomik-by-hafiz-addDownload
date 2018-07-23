@@ -13,7 +13,12 @@ class ChapterList extends Component{
         // this.props.dispatch(getChapterList(80))
     }
 
+    componentWillUnmount(){
+        this.props.dispatch({type:'RESET_CHAPTER_LIST'})
+    }
+
     handleOnPull = ()=>{
+        this.props.dispatch(getChapterList(this.props.mangaDetailsReducer.manga.id))
     }
 
     _keyExtractor = (item, index) => item.id;

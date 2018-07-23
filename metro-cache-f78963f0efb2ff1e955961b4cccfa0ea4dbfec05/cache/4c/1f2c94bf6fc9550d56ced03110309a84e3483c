@@ -7,7 +7,6 @@ __d(function (global, _require, module, exports, _dependencyMap) {
 
     initialState = {
         data: [],
-        modal: false,
         isLoading: false,
         isFailed: false
     };
@@ -36,10 +35,8 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                     isFailed: true
                 });
 
-            case 'MODAL_ACTION':
-                return _extends({}, state, {
-                    modal: !state.modal
-                });
+            case 'RESET_CHAPTER_LIST':
+                return initialState;
 
             default:
                 return state;

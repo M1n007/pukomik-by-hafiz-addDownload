@@ -93,7 +93,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         },
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 47
+                            lineNumber: 39
                         }
                     },
                     _react3.default.createElement(
@@ -101,7 +101,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         {
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 48
+                                lineNumber: 40
                             }
                         },
                         _react3.default.createElement(
@@ -110,7 +110,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                 style: styles.listWrapper,
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 49
+                                    lineNumber: 41
                                 }
                             },
                             _react3.default.createElement(
@@ -119,7 +119,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                     style: styles.listItem,
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 51
+                                        lineNumber: 43
                                     }
                                 },
                                 _react3.default.createElement(_reactNative.Image, {
@@ -129,7 +129,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                     },
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 52
+                                        lineNumber: 44
                                     }
                                 }),
                                 _react3.default.createElement(
@@ -138,7 +138,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                         style: styles.listItemContent,
                                         __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 56
+                                            lineNumber: 48
                                         }
                                     },
                                     _react3.default.createElement(
@@ -147,7 +147,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                             style: styles.listItemTitle,
                                             __source: {
                                                 fileName: _jsxFileName,
-                                                lineNumber: 57
+                                                lineNumber: 49
                                             }
                                         },
                                         item.title
@@ -158,7 +158,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                             style: styles.listItemScoreWrapper,
                                             __source: {
                                                 fileName: _jsxFileName,
-                                                lineNumber: 58
+                                                lineNumber: 50
                                             }
                                         },
                                         _react3.default.createElement(
@@ -167,7 +167,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                                 style: styles.listItemScore,
                                                 __source: {
                                                     fileName: _jsxFileName,
-                                                    lineNumber: 59
+                                                    lineNumber: 51
                                                 }
                                             },
                                             item.score
@@ -179,7 +179,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                             style: styles.listItemPopularity,
                                             __source: {
                                                 fileName: _jsxFileName,
-                                                lineNumber: 61
+                                                lineNumber: 53
                                             }
                                         },
                                         "Popularity #",
@@ -191,7 +191,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                             style: styles.listItemRanked,
                                             __source: {
                                                 fileName: _jsxFileName,
-                                                lineNumber: 62
+                                                lineNumber: 54
                                             }
                                         },
                                         "Ranked #",
@@ -203,7 +203,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                 style: styles.listItemBookmark,
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 66
+                                    lineNumber: 58
                                 }
                             })
                         )
@@ -216,15 +216,6 @@ __d(function (global, _require, module, exports, _dependencyMap) {
             key: "componentDidMount",
             value: function componentDidMount() {
                 this.props.dispatch(browseAction.getMangas(0, rows));
-                var url = 'https://www.gosdfjsdfjsdfogle.comsdfsdfdf/';
-
-                _reactNative.Linking.getInitialURL(url).then(function (url) {
-                    if (url) {
-                        alert(url);
-                    }
-                }).catch(function (err) {
-                    return alert(err);
-                });
             }
         }, {
             key: "getReset",
@@ -257,7 +248,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         style: styles.mainWrapper,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 86
+                            lineNumber: 78
                         }
                     },
                     _react3.default.createElement(_reactNative.FlatList, {
@@ -273,7 +264,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         ListFooterComponent: this.listFooterComponent,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 90
+                            lineNumber: 82
                         }
                     })
                 );

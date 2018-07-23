@@ -14,14 +14,6 @@ class Browse extends Component{
 
     componentDidMount(){
         this.props.dispatch(browseAction.getMangas(0,rows))
-
-        let url = 'https://www.gosdfjsdfjsdfogle.comsdfsdfdf/';
-
-        Linking.getInitialURL(url).then((url) => {
-            if (url) {
-                alert(url)
-            }
-        }).catch(err => alert(err));
     }
 
     async getReset(){

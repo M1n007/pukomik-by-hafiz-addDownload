@@ -68,7 +68,9 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                 args[_key] = arguments[_key];
             }
 
-            return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ChapterList.__proto__ || Object.getPrototypeOf(ChapterList)).call.apply(_ref, [this].concat(args))), _this), _this.handleOnPull = function () {}, _this._keyExtractor = function (item, index) {
+            return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ChapterList.__proto__ || Object.getPrototypeOf(ChapterList)).call.apply(_ref, [this].concat(args))), _this), _this.handleOnPull = function () {
+                _this.props.dispatch((0, _chapterList.getChapterList)(_this.props.mangaDetailsReducer.manga.id));
+            }, _this._keyExtractor = function (item, index) {
                 return item.id;
             }, _this._onPressItem = function () {
                 alert('list onpress');
@@ -84,7 +86,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         },
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 26
+                            lineNumber: 31
                         }
                     },
                     _react3.default.createElement(
@@ -92,7 +94,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         {
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 27
+                                lineNumber: 32
                             }
                         },
                         _react3.default.createElement(
@@ -103,7 +105,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                 },
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 28
+                                    lineNumber: 33
                                 }
                             },
                             "Chapter #",
@@ -115,7 +117,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                 style: styles.chapterTitle,
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 29
+                                    lineNumber: 34
                                 }
                             },
                             item.title
@@ -135,6 +137,13 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                 this.props.dispatch((0, _chapterList.getChapterList)(this.props.mangaDetailsReducer.manga.id));
             }
         }, {
+            key: "componentWillUnmount",
+            value: function componentWillUnmount() {
+                this.props.dispatch({
+                    type: 'RESET_CHAPTER_LIST'
+                });
+            }
+        }, {
             key: "render",
             value: function render() {
                 var _this2 = this;
@@ -147,7 +156,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         },
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 45
+                            lineNumber: 50
                         }
                     },
                     _react3.default.createElement(
@@ -156,7 +165,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                             isVisible: this.props.chapterListReducer.modal,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 46
+                                lineNumber: 51
                             }
                         },
                         _react3.default.createElement(
@@ -165,7 +174,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                 style: styles.modalWrapper,
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 47
+                                    lineNumber: 52
                                 }
                             },
                             _react3.default.createElement(
@@ -174,7 +183,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                     style: styles.modalMain,
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 48
+                                        lineNumber: 53
                                     }
                                 },
                                 _react3.default.createElement(
@@ -185,7 +194,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                         },
                                         __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 49
+                                            lineNumber: 54
                                         }
                                     },
                                     _react3.default.createElement(
@@ -197,7 +206,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                             background: _reactNative.TouchableNativeFeedback.SelectableBackgroundBorderless(),
                                             __source: {
                                                 fileName: _jsxFileName,
-                                                lineNumber: 50
+                                                lineNumber: 55
                                             }
                                         },
                                         _react3.default.createElement(_nativeBase.Icon, {
@@ -205,7 +214,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                             name: "close",
                                             __source: {
                                                 fileName: _jsxFileName,
-                                                lineNumber: 53
+                                                lineNumber: 58
                                             }
                                         })
                                     )
@@ -218,7 +227,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                         },
                                         __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 56
+                                            lineNumber: 61
                                         }
                                     },
                                     "Coming soon bosqu"
@@ -228,7 +237,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                     {
                                         __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 57
+                                            lineNumber: 62
                                         }
                                     },
                                     "Please Wait.."
@@ -237,7 +246,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                     color: "#568BF2",
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 58
+                                        lineNumber: 63
                                     }
                                 }),
                                 _react3.default.createElement(
@@ -248,7 +257,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                         },
                                         __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 59
+                                            lineNumber: 64
                                         }
                                     },
                                     "Downloading 1/20.."
@@ -262,7 +271,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                             style: styles.mangaTitle,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 67
+                                lineNumber: 72
                             }
                         },
                         _react3.default.createElement(
@@ -271,7 +280,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                 style: styles.mangaTitleText,
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 68
+                                    lineNumber: 73
                                 }
                             },
                             this.props.mangaDetailsReducer.manga.title
@@ -286,7 +295,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         renderItem: this._renderItem,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 71
+                            lineNumber: 76
                         }
                     })
                 );
