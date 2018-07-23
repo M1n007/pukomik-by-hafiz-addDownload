@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import {Text, FlatList, StyleSheet, Image,View, Dimensions, StatusBar, AsyncStorage, TouchableNativeFeedback, BackAndroid} from 'react-native'
+import {Text, FlatList, StyleSheet, Image,View, Dimensions, StatusBar, AsyncStorage, TouchableNativeFeedback, BackAndroid,Linking} from 'react-native'
 import {Container,ListItem, Body, Icon, Spinner} from 'native-base'
 import { connect } from 'react-redux';
 
@@ -14,6 +14,14 @@ class Browse extends Component{
 
     componentDidMount(){
         this.props.dispatch(browseAction.getMangas(0,rows))
+
+        let url = 'https://www.gosdfjsdfjsdfogle.comsdfsdfdf/';
+
+        Linking.getInitialURL(url).then((url) => {
+            if (url) {
+                alert(url)
+            }
+        }).catch(err => alert(err));
     }
 
     async getReset(){
