@@ -4,22 +4,22 @@ import Swiper from 'react-native-swiper'
 import PhotoView from 'react-native-photo-view'
 import GestureRecognizer from 'react-native-swipe-gestures';
 import {connect} from 'react-redux'
-import {setJSExceptionHandler} from 'react-native-exception-handler'
+// import {setJSExceptionHandler} from 'react-native-exception-handler'
 
 import {getPages} from '../actions/pages'
 
 const { width } = Dimensions.get('window')
 const loading = require('../assets/img/loading.gif')
 
-const errorHandler = (e, isFatal) => {
-  if (isFatal) {
-    Alert.alert('Unexpected error occurred','Maaf, terjadi kesalahan');
-  } else {
-    console.log(e); // So that we can see it in the ADB logs in case of Android if needed
-  }
-};
+// const errorHandler = (e, isFatal) => {
+//   if (isFatal) {
+//     Alert.alert('Unexpected error occurred','Maaf, terjadi kesalahan');
+//   } else {
+//     console.log(e); // So that we can see it in the ADB logs in case of Android if needed
+//   }
+// };
 
-setJSExceptionHandler(errorHandler,true);
+// setJSExceptionHandler(errorHandler,true);
 
 class Pages extends Component {
 

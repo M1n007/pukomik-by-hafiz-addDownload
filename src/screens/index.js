@@ -9,4 +9,6 @@ import Browse from './main/Browse'
 import Downloads from './main/Downloads'
 import Search from './main/Search'
 
-export {Pages,PagesLoader,ChapterList,MangaDetails,Bookmarks,Browse,Downloads,Search}
+import BrowseM from './BrowseM'
+
+export {Pages,PagesLoader,ChapterList,MangaDetails,Bookmarks,Browse,Downloads,Search,BrowseM}

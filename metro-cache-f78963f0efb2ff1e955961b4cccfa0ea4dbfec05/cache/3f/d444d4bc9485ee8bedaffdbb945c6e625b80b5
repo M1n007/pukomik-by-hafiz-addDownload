@@ -162,6 +162,9 @@ __d(function (global, _require, module, exports, _dependencyMap) {
             navigationOptions: {
                 header: null
             }
+        },
+        BrowseM: {
+            screen: Screens.BrowseM
         }
     }, {});
     exports.default = RootNavigator;
