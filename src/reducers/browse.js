@@ -21,7 +21,7 @@ const browseReducer = (state = initialState, action)=>{
             isLoading: false, 
             isFailed: false, 
             data: state.data.concat(action.payload.data.data),
-            startPage: state.startPage + 5
+            startPage: state.startPage + 15
         }
         case 'GET_MANGAS_REJECTED':
         return {

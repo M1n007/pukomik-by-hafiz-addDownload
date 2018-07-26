@@ -2,7 +2,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.BrowseM = exports.Search = exports.Downloads = exports.Browse = exports.Bookmarks = exports.MangaDetails = exports.ChapterList = exports.PagesLoader = exports.Pages = undefined;
+  exports.Testing = exports.BrowseM = exports.Search = exports.Downloads = exports.Browse = exports.Bookmarks = exports.MangaDetails = exports.ChapterList = exports.PagesLoader = exports.Pages = undefined;
 
   var _MangaDetails = _require(_dependencyMap[0], "./MangaDetails");
 
@@ -40,6 +40,10 @@ __d(function (global, _require, module, exports, _dependencyMap) {
 
   var _BrowseM2 = _interopRequireDefault(_BrowseM);
 
+  var _Testing = _require(_dependencyMap[9], "./Testing");
+
+  var _Testing2 = _interopRequireDefault(_Testing);
+
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
   exports.Pages = _Pages2.default;
@@ -51,4 +55,5 @@ __d(function (global, _require, module, exports, _dependencyMap) {
   exports.Downloads = _Downloads2.default;
   exports.Search = _Search2.default;
   exports.BrowseM = _BrowseM2.default;
+  exports.Testing = _Testing2.default;
 });

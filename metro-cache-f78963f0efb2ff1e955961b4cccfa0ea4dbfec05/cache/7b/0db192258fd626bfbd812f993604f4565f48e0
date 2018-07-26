@@ -17,6 +17,18 @@ __d(function (global, _require, module, exports, _dependencyMap) {
 
     var _reactNative = _require(_dependencyMap[2], "react-native");
 
+    var _reactNativeMaterialUi = _require(_dependencyMap[3], "react-native-material-ui");
+
+    var _nativeBase = _require(_dependencyMap[4], "native-base");
+
+    var _reactRedux = _require(_dependencyMap[5], "react-redux");
+
+    var _browse = _require(_dependencyMap[6], "../actions/browse");
+
+    var browseAction = _interopRequireWildcard(_browse);
+
+    function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
     function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
     function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -26,7 +38,12 @@ __d(function (global, _require, module, exports, _dependencyMap) {
     function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
     var _components = {
-        _component: {}
+        Manga: {
+            displayName: "Manga"
+        },
+        Browse: {
+            displayName: "Browse"
+        }
     };
 
     var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
@@ -42,36 +59,213 @@ __d(function (global, _require, module, exports, _dependencyMap) {
         };
     }
 
-    var screenWidth = _reactNative.Dimensions.get('window').width;
+    var rows = 15;
 
-    var arr = [1, 2, 3, 4, 5, 6, 7];
+    var Manga = _wrapComponent("Manga")(function (_PureComponent) {
+        _inherits(Manga, _PureComponent);
 
-    var _component = _wrapComponent("_component")(function (_Component) {
-        _inherits(_class2, _Component);
+        function Manga() {
+            _classCallCheck(this, Manga);
 
-        function _class2() {
+            return _possibleConstructorReturn(this, (Manga.__proto__ || Object.getPrototypeOf(Manga)).apply(this, arguments));
+        }
+
+        _createClass(Manga, [{
+            key: "render",
+            value: function render() {
+                return _react3.default.createElement(
+                    _reactNative.TouchableNativeFeedback,
+                    {
+                        background: _reactNative.TouchableNativeFeedback.SelectableBackgroundBorderless(),
+                        onPress: this.props.onPress,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 15
+                        }
+                    },
+                    _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: styles.listWrapper,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 19
+                            }
+                        },
+                        _react3.default.createElement(
+                            _reactNative.View,
+                            {
+                                style: styles.imageWrapper,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 20
+                                }
+                            },
+                            _react3.default.createElement(_reactNative.Image, {
+                                style: {
+                                    alignSelf: 'center',
+                                    height: 140,
+                                    width: 110
+                                },
+                                source: {
+                                    uri: this.props.img
+                                },
+                                resizeMode: "stretch",
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 21
+                                }
+                            })
+                        ),
+                        _react3.default.createElement(
+                            _reactNative.Text,
+                            {
+                                numberOfLines: 1,
+                                style: styles.mangaTitle,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 31
+                                }
+                            },
+                            this.props.title
+                        ),
+                        _react3.default.createElement(
+                            _reactNative.View,
+                            {
+                                style: styles.scoreWrapper,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 32
+                                }
+                            },
+                            _react3.default.createElement(
+                                _reactNative.Text,
+                                {
+                                    style: styles.scoreText,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 33
+                                    }
+                                },
+                                "Score"
+                            ),
+                            _react3.default.createElement(
+                                _reactNative.View,
+                                {
+                                    style: styles.scoreValueWrapper,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 34
+                                    }
+                                },
+                                _react3.default.createElement(
+                                    _reactNative.Text,
+                                    {
+                                        style: styles.scoreValueText,
+                                        __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 35
+                                        }
+                                    },
+                                    this.props.score
+                                )
+                            )
+                        ),
+                        _react3.default.createElement(
+                            _reactNative.Text,
+                            {
+                                style: styles.lChapterText,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 38
+                                }
+                            },
+                            "Popularity #",
+                            this.props.popularity
+                        )
+                    )
+                );
+            }
+        }]);
+
+        return Manga;
+    }(_react2.PureComponent));
+
+    var Browse = _wrapComponent("Browse")(function (_Component) {
+        _inherits(Browse, _Component);
+
+        function Browse() {
             var _ref;
 
-            var _temp, _this, _ret;
+            var _temp, _this2, _ret;
 
-            _classCallCheck(this, _class2);
+            _classCallCheck(this, Browse);
 
             for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
                 args[_key] = arguments[_key];
             }
 
-            return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = _class2.__proto__ || Object.getPrototypeOf(_class2)).call.apply(_ref, [this].concat(args))), _this), _this.getRowTotal = function (totalData, width) {
-                res = Math.floor(screenWidth / width);
-                resMod = totalData % res;
-                return res - resMod;
-            }, _temp), _possibleConstructorReturn(_this, _ret);
+            return _ret = (_temp = (_this2 = _possibleConstructorReturn(this, (_ref = Browse.__proto__ || Object.getPrototypeOf(Browse)).call.apply(_ref, [this].concat(args))), _this2), _this2.state = {
+                scrollIndex: 0,
+                filter: true
+            }, _this2.handleOnPull = function () {
+                _this2.getReset();
+            }, _this2.handleOnReach = function () {
+                _this2.props.dispatch(browseAction.getMangas(_this2.props.browseReducer.startPage, rows));
+            }, _this2._keyExtractor = function (item, index) {
+                return item.id;
+            }, _this2._renderItem = function (_ref2) {
+                var item = _ref2.item;
+                return _react3.default.createElement(Manga, {
+                    img: item.img,
+                    title: item.title,
+                    score: item.score,
+                    popularity: item.popularity,
+                    onPress: function onPress() {
+                        return _this2.props.navigation.navigate('MangaDetails', {
+                            id: item.id
+                        });
+                    },
+                    __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 75
+                    }
+                });
+            }, _temp), _possibleConstructorReturn(_this2, _ret);
         }
 
-        _createClass(_class2, [{
+        _createClass(Browse, [{
+            key: "componentDidMount",
+            value: function componentDidMount() {
+                this.props.dispatch(browseAction.getMangas(0, rows));
+            }
+        }, {
+            key: "getReset",
+            value: function getReset() {
+                return regeneratorRuntime.async(function getReset$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                            case 0:
+                                _context.next = 2;
+                                return regeneratorRuntime.awrap(this.props.dispatch({
+                                    type: 'GET_MANGAS_RESET'
+                                }));
+
+                            case 2:
+                                this.props.dispatch(browseAction.getMangas(0, rows));
+
+                            case 3:
+                            case "end":
+                                return _context.stop();
+                        }
+                    }
+                }, null, this);
+            }
+        }, {
             key: "render",
             value: function render() {
                 return _react3.default.createElement(
-                    _reactNative.View,
+                    _nativeBase.Container,
                     {
                         style: {
                             flex: 1,
@@ -79,16 +273,42 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         },
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 16
+                            lineNumber: 88
                         }
                     },
+                    _react3.default.createElement(_reactNativeMaterialUi.Toolbar, {
+                        centerElement: "pukomik.com",
+                        searchable: {
+                            autoFocus: true,
+                            placeholder: 'Search',
+                            onSearchPressed: this.showSearch
+                        },
+                        rightElement: {
+                            menu: {
+                                icon: "more-vert",
+                                labels: ["About", "Settings"]
+                            }
+                        },
+                        style: {
+                            container: {
+                                backgroundColor: '#f16334'
+                            }
+                        },
+                        onRightElementPress: function onRightElementPress(label) {
+                            alert(JSON.stringify(label));
+                        },
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 89
+                        }
+                    }),
                     _react3.default.createElement(
                         _reactNative.TouchableNativeFeedback,
                         {
                             background: _reactNative.TouchableNativeFeedback.SelectableBackground(),
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 18
+                                lineNumber: 113
                             }
                         },
                         _react3.default.createElement(
@@ -97,7 +317,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                 style: styles.filterWrappper,
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 21
+                                    lineNumber: 116
                                 }
                             },
                             _react3.default.createElement(
@@ -106,163 +326,46 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                     style: styles.filterText,
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 22
+                                        lineNumber: 117
                                     }
                                 },
-                                "Filter"
+                                "Sort by"
                             )
                         )
                     ),
-                    _react3.default.createElement(
-                        _reactNative.ScrollView,
-                        {
-                            __source: {
-                                fileName: _jsxFileName,
-                                lineNumber: 26
-                            }
+                    _react3.default.createElement(_reactNative.FlatList, {
+                        contentContainerStyle: styles.bodyWrapper,
+                        refreshing: this.props.browseReducer.isLoading,
+                        onRefresh: this.handleOnPull,
+                        onEndReachedThreshold: 0.5,
+                        onEndReached: this.handleOnReach,
+                        data: this.props.browseReducer.data,
+                        extraData: this.props.browseReducer.data,
+                        keyExtractor: this._keyExtractor,
+                        renderItem: this._renderItem,
+                        numColumns: 3,
+                        columnWrapperStyle: {
+                            justifyContent: 'space-around'
                         },
-                        _react3.default.createElement(
-                            _reactNative.View,
-                            {
-                                style: styles.categoryWrapper,
-                                __source: {
-                                    fileName: _jsxFileName,
-                                    lineNumber: 29
-                                }
-                            },
-                            _react3.default.createElement(
-                                _reactNative.Text,
-                                {
-                                    style: styles.allMangaText,
-                                    __source: {
-                                        fileName: _jsxFileName,
-                                        lineNumber: 31
-                                    }
-                                },
-                                "ALL MANGA"
-                            ),
-                            _react3.default.createElement(
-                                _reactNative.View,
-                                {
-                                    style: styles.bodyWrapper,
-                                    __source: {
-                                        fileName: _jsxFileName,
-                                        lineNumber: 32
-                                    }
-                                },
-                                arr.map(function () {
-                                    return _react3.default.createElement(
-                                        _reactNative.View,
-                                        {
-                                            style: styles.listWrapper,
-                                            __source: {
-                                                fileName: _jsxFileName,
-                                                lineNumber: 37
-                                            }
-                                        },
-                                        _react3.default.createElement(
-                                            _reactNative.View,
-                                            {
-                                                style: styles.imageWrapper,
-                                                __source: {
-                                                    fileName: _jsxFileName,
-                                                    lineNumber: 38
-                                                }
-                                            },
-                                            _react3.default.createElement(_reactNative.Image, {
-                                                style: {
-                                                    alignSelf: 'center',
-                                                    height: 140,
-                                                    width: 110
-                                                },
-                                                source: {
-                                                    uri: 'https://myanimelist.cdn-dena.com/images/anime/1173/92110.jpg'
-                                                },
-                                                resizeMode: "stretch",
-                                                __source: {
-                                                    fileName: _jsxFileName,
-                                                    lineNumber: 39
-                                                }
-                                            })
-                                        ),
-                                        _react3.default.createElement(
-                                            _reactNative.Text,
-                                            {
-                                                numberOfLines: 1,
-                                                style: styles.mangaTitle,
-                                                __source: {
-                                                    fileName: _jsxFileName,
-                                                    lineNumber: 49
-                                                }
-                                            },
-                                            "Shingeki no Kyojin Season 3"
-                                        ),
-                                        _react3.default.createElement(
-                                            _reactNative.View,
-                                            {
-                                                style: styles.scoreWrapper,
-                                                __source: {
-                                                    fileName: _jsxFileName,
-                                                    lineNumber: 50
-                                                }
-                                            },
-                                            _react3.default.createElement(
-                                                _reactNative.Text,
-                                                {
-                                                    style: styles.scoreText,
-                                                    __source: {
-                                                        fileName: _jsxFileName,
-                                                        lineNumber: 51
-                                                    }
-                                                },
-                                                "Score"
-                                            ),
-                                            _react3.default.createElement(
-                                                _reactNative.View,
-                                                {
-                                                    style: styles.scoreValueWrapper,
-                                                    __source: {
-                                                        fileName: _jsxFileName,
-                                                        lineNumber: 52
-                                                    }
-                                                },
-                                                _react3.default.createElement(
-                                                    _reactNative.Text,
-                                                    {
-                                                        style: styles.scoreValueText,
-                                                        __source: {
-                                                            fileName: _jsxFileName,
-                                                            lineNumber: 53
-                                                        }
-                                                    },
-                                                    "9.7"
-                                                )
-                                            )
-                                        ),
-                                        _react3.default.createElement(
-                                            _reactNative.Text,
-                                            {
-                                                style: styles.lChapterText,
-                                                __source: {
-                                                    fileName: _jsxFileName,
-                                                    lineNumber: 56
-                                                }
-                                            },
-                                            "Last Chapter #212"
-                                        )
-                                    );
-                                })
-                            )
-                        )
-                    )
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 121
+                        }
+                    })
                 );
             }
         }]);
 
-        return _class2;
+        return Browse;
     }(_react2.Component));
 
-    exports.default = _component;
+    var mapStateToProps = function mapStateToProps(state) {
+        return {
+            browseReducer: state.browseReducer
+        };
+    };
+
+    exports.default = (0, _reactRedux.connect)(mapStateToProps)(Browse);
 
     var styles = _reactNative.StyleSheet.create({
         categoryWrapper: {
@@ -273,11 +376,8 @@ __d(function (global, _require, module, exports, _dependencyMap) {
             color: '#444444'
         },
         bodyWrapper: {
-            flex: 1,
             backgroundColor: 'white',
-            flexDirection: 'row',
-            justifyContent: 'space-around',
-            flexWrap: 'wrap',
+            flexDirection: 'column',
             paddingTop: 10
         },
         listWrapper: {

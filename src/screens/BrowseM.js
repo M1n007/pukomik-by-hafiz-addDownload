@@ -1,73 +1,152 @@
-import React,{Component} from 'react'
-import {View,Text,StyleSheet,Image,Dimensions,TouchableNativeFeedback,ScrollView} from 'react-native'
+import React,{Component,PureComponent} from 'react'
+import {View,Text,StyleSheet,Image,Dimensions,TouchableNativeFeedback,ScrollView, FlatList} from 'react-native'
+import {Toolbar,ThemeProvider} from 'react-native-material-ui'
+import {Content,Container} from 'native-base'
+// import * as Animatable from 'react-native-animatable'
+import { connect } from 'react-redux';
+import * as browseAction from '../actions/browse'
 
-const screenWidth = Dimensions.get('window').width
-const arr = [1,2,3,4,5,6,7]
-export default class extends Component{
+const rows = 15
 
-    getRowTotal = (totalData, width)=>{
-        res = Math.floor(screenWidth/width)
-        resMod = totalData%res
-        return res - resMod
+class Manga extends PureComponent{
+    render(){
+        return(
+            
+        <TouchableNativeFeedback
+            background={TouchableNativeFeedback.SelectableBackgroundBorderless()}
+            onPress={this.props.onPress}
+        >
+        <View style={styles.listWrapper}>
+            <View style={styles.imageWrapper}>
+            <Image
+                style={{
+                    alignSelf: 'center',
+                    height: 140,
+                    width: 110,
+                }}
+                source={{uri: this.props.img}}
+                resizeMode="stretch"
+                />
+            </View>
+            <Text numberOfLines={1} style={styles.mangaTitle}>{this.props.title}</Text>
+            <View style = {styles.scoreWrapper}>
+                <Text style={styles.scoreText}>Score</Text>
+                <View style={styles.scoreValueWrapper}>
+                    <Text style={styles.scoreValueText}>{this.props.score}</Text>
+                </View>
+            </View>
+            <Text style={styles.lChapterText}>Popularity #{this.props.popularity}</Text>
+        </View>
+        </TouchableNativeFeedback>
+        )
     }
+}
+
+class Browse extends Component{
+
+    state = {
+        scrollIndex:0,
+        filter: true
+    }
+
+
+    componentDidMount(){
+        this.props.dispatch(browseAction.getMangas(0,rows))
+    }
+
+    async getReset(){
+        await this.props.dispatch({type: 'GET_MANGAS_RESET'})
+        this.props.dispatch(browseAction.getMangas(0,rows))
+    }
+
+    handleOnPull = ()=>{
+        this.getReset()
+    }
+
+    handleOnReach = ()=>{
+        this.props.dispatch(browseAction.getMangas(this.props.browseReducer.startPage,rows))
+    }
+
+    _keyExtractor = (item, index) => item.id
+
+    _renderItem = ({item}) => (
+
+        
+            <Manga
+                img = {item.img}
+                title = {item.title}
+                score = {item.score}
+                popularity = {item.popularity}
+                onPress={()=>this.props.navigation.navigate('MangaDetails',{id: item.id})}
+            />
+        // </TouchableNativeFeedback>
+        
+    )
 
     render(){
         return(
-            <View style={{flex:1,backgroundColor: 'white'}}>
+            <Container style={{flex:1,backgroundColor: 'white'}}>
+                    <Toolbar
+                        centerElement='pukomik.com'
+                        searchable={{
+                            autoFocus: true,
+                            placeholder: 'Search',
+                            // onChangeText: (search)=>this.setState({search}),
+                            onSearchPressed: this.showSearch,
+                            // onSearchClosed: this.handleOnSearchBack,
+                            // onSubmitEditing: this.handleSearch
+                        }}
+                        rightElement={{
+                            menu: {
+                                icon: "more-vert",
+                                labels: ["About","Settings"]
+                            }
+                        }}
+                        style = {{
+                            container: {
+                                backgroundColor: '#f16334'
+                            }
+                        }}
+                        onRightElementPress={ (label) => { alert(JSON.stringify(label)) }}
+                    />
 
                 <TouchableNativeFeedback
                     background={TouchableNativeFeedback.SelectableBackground()}
                 >
                     <View style={styles.filterWrappper}>
-                        <Text style={styles.filterText}>Filter</Text>
+                        <Text style={styles.filterText}>Sort by</Text>
                     </View>
                 </TouchableNativeFeedback>
+
+                    <FlatList
+                        contentContainerStyle = {styles.bodyWrapper}
+                        refreshing = {this.props.browseReducer.isLoading}
+                        onRefresh = {this.handleOnPull}
+                        onEndReachedThreshold ={0.5}
+                        onEndReached = {this.handleOnReach}
+                        data={this.props.browseReducer.data}
+                        extraData={this.props.browseReducer.data}
+                        keyExtractor={this._keyExtractor}
+                        renderItem={this._renderItem}
+                        numColumns = {3}
+                        columnWrapperStyle = {
+                        {justifyContent: 'space-around'}
+                        }
+                    />
                 
-                <ScrollView>
-                {/* <Text>{this.getRowTotal(4,110)}</Text> */}
-                
-                <View style={styles.categoryWrapper}>
-
-                    <Text style={styles.allMangaText}>ALL MANGA</Text>
-                    <View style={styles.bodyWrapper}>
-
-
-                    {arr.map(()=>{
-                    return (
-                        <View style={styles.listWrapper}>
-                            <View style={styles.imageWrapper}>
-                            <Image
-                                style={{
-                                    alignSelf: 'center',
-                                    height: 140,
-                                    width: 110,
-                                }}
-                                source={{uri:'https://myanimelist.cdn-dena.com/images/anime/1173/92110.jpg'}}
-                                resizeMode="stretch"
-                                />
-                            </View>
-                            <Text numberOfLines={1} style={styles.mangaTitle}>Shingeki no Kyojin Season 3</Text>
-                            <View style = {styles.scoreWrapper}>
-                                <Text style={styles.scoreText}>Score</Text>
-                                <View style={styles.scoreValueWrapper}>
-                                    <Text style={styles.scoreValueText}>9.7</Text>
-                                </View>
-                            </View>
-                            <Text style={styles.lChapterText}>Last Chapter #212</Text>
-                        </View>
-                    )
-                    })}
-                    </View>
-
-                    
-                </View>
-                </ScrollView>
-                
-            </View>
+            </Container>
             
         )
     }
 }
+
+const mapStateToProps = (state)=>{
+    return{
+        browseReducer: state.browseReducer
+    }
+}
+
+export default connect(mapStateToProps)(Browse)
 
 const styles = StyleSheet.create({
     categoryWrapper: {
@@ -78,11 +157,11 @@ const styles = StyleSheet.create({
         color: '#444444'
     },
     bodyWrapper: {
-        flex :1,
+        // flex :1,
         backgroundColor: 'white',
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        flexWrap: 'wrap',
+        flexDirection: 'column',
+        // alignItems: 'space-around',
+        // flexWrap: 'wrap',
         paddingTop: 10
         // padding: 10
 

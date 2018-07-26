@@ -30,7 +30,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                     isLoading: false,
                     isFailed: false,
                     data: state.data.concat(action.payload.data.data),
-                    startPage: state.startPage + 5
+                    startPage: state.startPage + 15
                 });
 
             case 'GET_MANGAS_REJECTED':

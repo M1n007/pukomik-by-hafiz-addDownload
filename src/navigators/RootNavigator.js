@@ -126,6 +126,15 @@ const RootNavigator = createStackNavigator({
     },
     BrowseM: {
         screen: Screens.BrowseM,
+        navigationOptions: {
+            header: null
+        }
+    },
+    Testing: {
+        screen: Screens.Testing,
+        navigationOptions: {
+            header: null
+        }
     }
 }, {
     // headerMode: 'none',
