@@ -6,8 +6,8 @@ function getMangaDetails(id){
         type: 'GET_MANGA_DETAILS',
         payload: axios({
             method: 'POST',
-            url: 'http://192.168.43.142/api/get_manga_details.php',
-            // url: 'http://192.168.56.1/api/get_manga_details.php',
+            // url: 'http://192.168.43.142/api/get_manga_details.php',
+            url: 'http://192.168.56.1/api/get_manga_details.php',
             ers: { 'content-type': 'application/x-www-form-urlencoded' },
             data: {
                 id,

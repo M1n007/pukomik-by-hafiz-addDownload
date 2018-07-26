@@ -5,8 +5,8 @@ function getChapterList(id){
         type: 'GET_CHAPTER_LIST',
         payload: axios({
             method: 'POST',
-            url: 'http://192.168.43.142/api/get_chapters.php',
-            // url: 'http://192.168.56.1/api/get_chapters.php',
+            // url: 'http://192.168.43.142/api/get_chapters.php',
+            url: 'http://192.168.56.1/api/get_chapters.php',
             headers: { 'content-type': 'application/x-www-form-urlencoded' },
             data: {
                 id,

@@ -21,9 +21,13 @@ __d(function (global, _require, module, exports, _dependencyMap) {
 
     var _nativeBase = _require(_dependencyMap[4], "native-base");
 
-    var _reactRedux = _require(_dependencyMap[5], "react-redux");
+    var _reactNativeAnimatable = _require(_dependencyMap[5], "react-native-animatable");
 
-    var _browse = _require(_dependencyMap[6], "../actions/browse");
+    var Animatable = _interopRequireWildcard(_reactNativeAnimatable);
+
+    var _reactRedux = _require(_dependencyMap[6], "react-redux");
+
+    var _browse = _require(_dependencyMap[7], "../actions/browse");
 
     var browseAction = _interopRequireWildcard(_browse);
 
@@ -40,6 +44,9 @@ __d(function (global, _require, module, exports, _dependencyMap) {
     var _components = {
         Manga: {
             displayName: "Manga"
+        },
+        BrowseSearch: {
+            displayName: "BrowseSearch"
         },
         Browse: {
             displayName: "Browse"
@@ -191,28 +198,21 @@ __d(function (global, _require, module, exports, _dependencyMap) {
         return Manga;
     }(_react2.PureComponent));
 
-    var Browse = _wrapComponent("Browse")(function (_Component) {
-        _inherits(Browse, _Component);
+    var BrowseSearch = _wrapComponent("BrowseSearch")(function (_PureComponent2) {
+        _inherits(BrowseSearch, _PureComponent2);
 
-        function Browse() {
+        function BrowseSearch() {
             var _ref;
 
             var _temp, _this2, _ret;
 
-            _classCallCheck(this, Browse);
+            _classCallCheck(this, BrowseSearch);
 
             for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
                 args[_key] = arguments[_key];
             }
 
-            return _ret = (_temp = (_this2 = _possibleConstructorReturn(this, (_ref = Browse.__proto__ || Object.getPrototypeOf(Browse)).call.apply(_ref, [this].concat(args))), _this2), _this2.state = {
-                scrollIndex: 0,
-                filter: true
-            }, _this2.handleOnPull = function () {
-                _this2.getReset();
-            }, _this2.handleOnReach = function () {
-                _this2.props.dispatch(browseAction.getMangas(_this2.props.browseReducer.startPage, rows));
-            }, _this2._keyExtractor = function (item, index) {
+            return _ret = (_temp = (_this2 = _possibleConstructorReturn(this, (_ref = BrowseSearch.__proto__ || Object.getPrototypeOf(BrowseSearch)).call.apply(_ref, [this].concat(args))), _this2), _this2._keyExtractor = function (item, index) {
                 return item.id;
             }, _this2._renderItem = function (_ref2) {
                 var item = _ref2.item;
@@ -228,10 +228,88 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                     },
                     __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 75
+                        lineNumber: 50
                     }
                 });
             }, _temp), _possibleConstructorReturn(_this2, _ret);
+        }
+
+        _createClass(BrowseSearch, [{
+            key: "render",
+            value: function render() {
+                return _react3.default.createElement(
+                    _nativeBase.Container,
+                    {
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 62
+                        }
+                    },
+                    _react3.default.createElement(_reactNative.FlatList, {
+                        contentContainerStyle: styles.bodyWrapper,
+                        refreshing: this.props.isLoading,
+                        data: this.props.data,
+                        extraData: this.props.extraData,
+                        keyExtractor: this._keyExtractor,
+                        renderItem: this._renderItem,
+                        numColumns: 3,
+                        columnWrapperStyle: {
+                            justifyContent: 'space-around'
+                        },
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 63
+                        }
+                    })
+                );
+            }
+        }]);
+
+        return BrowseSearch;
+    }(_react2.PureComponent));
+
+    var Browse = _wrapComponent("Browse")(function (_Component) {
+        _inherits(Browse, _Component);
+
+        function Browse() {
+            var _ref3;
+
+            var _temp2, _this3, _ret2;
+
+            _classCallCheck(this, Browse);
+
+            for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+                args[_key2] = arguments[_key2];
+            }
+
+            return _ret2 = (_temp2 = (_this3 = _possibleConstructorReturn(this, (_ref3 = Browse.__proto__ || Object.getPrototypeOf(Browse)).call.apply(_ref3, [this].concat(args))), _this3), _this3.state = {
+                scrollIndex: 0,
+                filter: true,
+                isSearch: false
+            }, _this3.handleOnPull = function () {
+                _this3.getReset();
+            }, _this3.handleOnReach = function () {
+                _this3.props.dispatch(browseAction.getMangas(_this3.props.browseReducer.startPage, rows));
+            }, _this3._keyExtractor = function (item, index) {
+                return item.id;
+            }, _this3._renderItem = function (_ref4) {
+                var item = _ref4.item;
+                return _react3.default.createElement(Manga, {
+                    img: item.img,
+                    title: item.title,
+                    score: item.score,
+                    popularity: item.popularity,
+                    onPress: function onPress() {
+                        return _this3.props.navigation.navigate('MangaDetails', {
+                            id: item.id
+                        });
+                    },
+                    __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 109
+                    }
+                });
+            }, _temp2), _possibleConstructorReturn(_this3, _ret2);
         }
 
         _createClass(Browse, [{
@@ -264,6 +342,8 @@ __d(function (global, _require, module, exports, _dependencyMap) {
         }, {
             key: "render",
             value: function render() {
+                var _this4 = this;
+
                 return _react3.default.createElement(
                     _nativeBase.Container,
                     {
@@ -273,7 +353,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         },
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 88
+                            lineNumber: 121
                         }
                     },
                     _react3.default.createElement(_reactNativeMaterialUi.Toolbar, {
@@ -281,7 +361,16 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         searchable: {
                             autoFocus: true,
                             placeholder: 'Search',
-                            onSearchPressed: this.showSearch
+                            onSearchPressed: function onSearchPressed() {
+                                return _this4.setState({
+                                    isSearch: true
+                                });
+                            },
+                            onSearchClosed: function onSearchClosed() {
+                                return _this4.setState({
+                                    isSearch: false
+                                });
+                            }
                         },
                         rightElement: {
                             menu: {
@@ -299,25 +388,47 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         },
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 89
+                            lineNumber: 122
                         }
                     }),
+                    this.state.isSearch == true ? _react3.default.createElement(
+                        Animatable.View,
+                        {
+                            animation: "",
+                            style: styles.searchWrapper,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 148
+                            }
+                        },
+                        _react3.default.createElement(BrowseSearch, {
+                            isLoading: this.props.browseReducer.isLoading,
+                            data: this.props.browseReducer.data,
+                            extraData: this.props.browseReducer.data,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 149
+                            }
+                        })
+                    ) : null,
                     _react3.default.createElement(
                         _reactNative.TouchableNativeFeedback,
                         {
                             background: _reactNative.TouchableNativeFeedback.SelectableBackground(),
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 113
+                                lineNumber: 158
                             }
                         },
                         _react3.default.createElement(
-                            _reactNative.View,
+                            Animatable.View,
                             {
+                                animation: "zoomIn",
+                                iterationCount: 1,
                                 style: styles.filterWrappper,
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 116
+                                    lineNumber: 161
                                 }
                             },
                             _react3.default.createElement(
@@ -326,7 +437,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                     style: styles.filterText,
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 117
+                                        lineNumber: 162
                                     }
                                 },
                                 "Sort by"
@@ -349,7 +460,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         },
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 121
+                            lineNumber: 167
                         }
                     })
                 );
@@ -368,6 +479,12 @@ __d(function (global, _require, module, exports, _dependencyMap) {
     exports.default = (0, _reactRedux.connect)(mapStateToProps)(Browse);
 
     var styles = _reactNative.StyleSheet.create({
+        searchWrapper: {
+            height: '100%',
+            width: '100%',
+            zIndex: 20,
+            backgroundColor: 'white'
+        },
         categoryWrapper: {
             flex: 1,
             padding: 10
@@ -418,7 +535,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
         filterWrappper: {
             width: 76,
             height: 30,
-            zIndex: 1,
+            zIndex: 0,
             position: 'absolute',
             bottom: 10,
             left: '50%',

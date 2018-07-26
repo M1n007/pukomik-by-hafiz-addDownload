@@ -5,8 +5,8 @@ function getPages(id){
         type: 'GET_PAGES',
         payload: axios({
             method: 'POST',
-            url: 'http://192.168.43.142/api/get_pages.php',
-            // url: 'http://192.168.56.1/api/get_pages.php',
+            // url: 'http://192.168.43.142/api/get_pages.php',
+            url: 'http://192.168.56.1/api/get_pages.php',
             headers: { 'content-type': 'application/x-www-form-urlencoded' },
             data: {
                 id,

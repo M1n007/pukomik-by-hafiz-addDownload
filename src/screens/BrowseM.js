@@ -2,7 +2,7 @@ import React,{Component,PureComponent} from 'react'
 import {View,Text,StyleSheet,Image,Dimensions,TouchableNativeFeedback,ScrollView, FlatList} from 'react-native'
 import {Toolbar,ThemeProvider} from 'react-native-material-ui'
 import {Content,Container} from 'native-base'
-// import * as Animatable from 'react-native-animatable'
+import * as Animatable from 'react-native-animatable'
 import { connect } from 'react-redux';
 import * as browseAction from '../actions/browse'
 
@@ -42,11 +42,47 @@ class Manga extends PureComponent{
     }
 }
 
+class BrowseSearch extends PureComponent{
+
+    _keyExtractor = (item, index) => item.id
+
+    _renderItem = ({item}) => (
+        <Manga
+            img = {item.img}
+            title = {item.title}
+            score = {item.score}
+            popularity = {item.popularity}
+            onPress={()=>this.props.navigation.navigate('MangaDetails',{id: item.id})}
+        />
+        // </TouchableNativeFeedback>
+    )
+
+    render(){
+        return(
+            <Container>
+                <FlatList
+                        contentContainerStyle = {styles.bodyWrapper}
+                        refreshing = {this.props.isLoading}
+                        data={this.props.data}
+                        extraData={this.props.extraData}
+                        keyExtractor={this._keyExtractor}
+                        renderItem={this._renderItem}
+                        numColumns = {3}
+                        columnWrapperStyle = {
+                            {justifyContent: 'space-around'}
+                        }
+                    />
+            </Container>
+        )
+    }
+}
+
 class Browse extends Component{
 
     state = {
         scrollIndex:0,
-        filter: true
+        filter: true,
+        isSearch: false,
     }
 
 
@@ -70,17 +106,14 @@ class Browse extends Component{
     _keyExtractor = (item, index) => item.id
 
     _renderItem = ({item}) => (
-
-        
-            <Manga
-                img = {item.img}
-                title = {item.title}
-                score = {item.score}
-                popularity = {item.popularity}
-                onPress={()=>this.props.navigation.navigate('MangaDetails',{id: item.id})}
-            />
+        <Manga
+            img = {item.img}
+            title = {item.title}
+            score = {item.score}
+            popularity = {item.popularity}
+            onPress={()=>this.props.navigation.navigate('MangaDetails',{id: item.id})}
+        />
         // </TouchableNativeFeedback>
-        
     )
 
     render(){
@@ -92,8 +125,8 @@ class Browse extends Component{
                             autoFocus: true,
                             placeholder: 'Search',
                             // onChangeText: (search)=>this.setState({search}),
-                            onSearchPressed: this.showSearch,
-                            // onSearchClosed: this.handleOnSearchBack,
+                            onSearchPressed: ()=>this.setState({isSearch: true}),
+                            onSearchClosed: ()=>this.setState({isSearch: false}),
                             // onSubmitEditing: this.handleSearch
                         }}
                         rightElement={{
@@ -110,14 +143,27 @@ class Browse extends Component{
                         onRightElementPress={ (label) => { alert(JSON.stringify(label)) }}
                     />
 
-                <TouchableNativeFeedback
-                    background={TouchableNativeFeedback.SelectableBackground()}
-                >
-                    <View style={styles.filterWrappper}>
-                        <Text style={styles.filterText}>Sort by</Text>
-                    </View>
-                </TouchableNativeFeedback>
+                    {/* isSearch */}
+                    {this.state.isSearch == true ?(
+                        <Animatable.View animation="" style={styles.searchWrapper}>
+                            <BrowseSearch
+                                isLoading = {this.props.browseReducer.isLoading}
+                                data = {this.props.browseReducer.data}
+                                extraData = {this.props.browseReducer.data}
+                            />
+                        </Animatable.View>
 
+                    ): null}
+
+                    <TouchableNativeFeedback
+                        background={TouchableNativeFeedback.SelectableBackground()}
+                    >
+                        <Animatable.View animation="zoomIn" iterationCount={1} style={styles.filterWrappper}>
+                            <Text style={styles.filterText}>Sort by</Text>
+                        </Animatable.View>
+                    </TouchableNativeFeedback>
+
+                    
                     <FlatList
                         contentContainerStyle = {styles.bodyWrapper}
                         refreshing = {this.props.browseReducer.isLoading}
@@ -149,6 +195,12 @@ const mapStateToProps = (state)=>{
 export default connect(mapStateToProps)(Browse)
 
 const styles = StyleSheet.create({
+    searchWrapper: {
+        height: '100%',
+        width: '100%',
+        zIndex: 20,
+        backgroundColor:'white'
+    },
     categoryWrapper: {
         flex:1,
         padding: 10
@@ -205,7 +257,7 @@ const styles = StyleSheet.create({
     filterWrappper: {
         width: 76,
         height: 30,
-        zIndex: 1,
+        zIndex: 0,
         position: 'absolute',
         bottom: 10,
         left: '50%',
