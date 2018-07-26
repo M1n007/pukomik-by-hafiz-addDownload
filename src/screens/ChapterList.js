@@ -70,7 +70,7 @@ class ChapterList extends Component{
                 {/* <Text>{JSON.stringify(this.props.chapterListReducer)}</Text> */}
 
                 <View style={styles.mangaTitle}>
-                    <Text style={styles.mangaTitleText}>{this.props.mangaDetailsReducer.manga.title}</Text>
+                    <Text style={styles.mangaTitleText}>{this.props.mangaDetailsReducer.manga.titleMal}</Text>
                 </View>
 
                 <FlatList

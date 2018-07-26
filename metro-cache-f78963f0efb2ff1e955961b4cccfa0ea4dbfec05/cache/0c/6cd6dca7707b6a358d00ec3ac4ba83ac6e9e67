@@ -9,7 +9,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
 
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-  var initialNavState = _RootNavigator2.default.router.getStateForAction(_RootNavigator2.default.router.getActionForPathAndParams('BrowseM'));
+  var initialNavState = _RootNavigator2.default.router.getStateForAction(_RootNavigator2.default.router.getActionForPathAndParams('Main'));
 
   function navReducer() {
     var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialNavState;

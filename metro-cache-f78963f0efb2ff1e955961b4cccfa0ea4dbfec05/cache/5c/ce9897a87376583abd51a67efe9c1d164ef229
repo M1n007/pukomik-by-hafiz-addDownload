@@ -33,7 +33,9 @@ __d(function (global, _require, module, exports, _dependencyMap) {
 
   var _reactRedux = _require(_dependencyMap[6], "react-redux");
 
-  var _pages = _require(_dependencyMap[7], "../actions/pages");
+  var _reactNativeExceptionHandler = _require(_dependencyMap[7], "react-native-exception-handler");
+
+  var _pages = _require(_dependencyMap[8], "../actions/pages");
 
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -65,7 +67,17 @@ __d(function (global, _require, module, exports, _dependencyMap) {
   var _Dimensions$get = _reactNative.Dimensions.get('window'),
       width = _Dimensions$get.width;
 
-  var loading = _require(_dependencyMap[8], '../assets/img/loading.gif');
+  var loading = _require(_dependencyMap[9], '../assets/img/loading.gif');
+
+  var errorHandler = function errorHandler(e, isFatal) {
+    if (isFatal) {
+      _reactNative.Alert.alert('Unexpected error occurred', 'Maaf, terjadi kesalahan');
+    } else {
+      console.log(e);
+    }
+  };
+
+  (0, _reactNativeExceptionHandler.setJSExceptionHandler)(errorHandler, true);
 
   var Pages = _wrapComponent("Pages")(function (_Component) {
     _inherits(Pages, _Component);

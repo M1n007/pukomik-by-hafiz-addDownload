@@ -10,11 +10,13 @@ const Main = createBottomTabNavigator({
             mainBrowse: {
                 screen: Screens.Browse,
                 navigationOptions: {
-                    headerTintColor: 'white',
-                    headerStyle: {
-                        backgroundColor: '#f16334'
-                    },
-                    title: 'Pukomik.com',
+                    // headerTintColor: 'white',
+                    // headerStyle: {
+                    //     backgroundColor: '#f16334'
+                    // },
+                    // title: 'Pukomik.com',
+                    header: null
+
                 }
             }
         }),
@@ -124,18 +126,18 @@ const RootNavigator = createStackNavigator({
             header: null
         }
     },
-    BrowseM: {
-        screen: Screens.BrowseM,
-        navigationOptions: {
-            header: null
-        }
-    },
-    Testing: {
-        screen: Screens.Testing,
-        navigationOptions: {
-            header: null
-        }
-    }
+    // BrowseM: {
+    //     screen: Screens.BrowseM,
+    //     navigationOptions: {
+    //         header: null
+    //     }
+    // },
+    // Testing: {
+    //     screen: Screens.Testing,
+    //     navigationOptions: {
+    //         header: null
+    //     }
+    // }
 }, {
     // headerMode: 'none',
 })

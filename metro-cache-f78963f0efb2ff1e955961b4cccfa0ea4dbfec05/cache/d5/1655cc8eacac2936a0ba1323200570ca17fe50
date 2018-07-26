@@ -283,7 +283,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                     lineNumber: 73
                                 }
                             },
-                            this.props.mangaDetailsReducer.manga.title
+                            this.props.mangaDetailsReducer.manga.titleMal
                         )
                     ),
                     _react3.default.createElement(_reactNative.FlatList, {

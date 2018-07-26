@@ -15,8 +15,8 @@ __d(function (global, _require, module, exports, _dependencyMap) {
             type: 'GET_MANGA_DETAILS',
             payload: (0, _axios2.default)({
                 method: 'POST',
-                url: 'http://192.168.56.1/api/get_manga_details.php',
-                ers: {
+                url: 'http://149.28.146.211/api/get_manga_details.php',
+                headers: {
                     'content-type': 'application/x-www-form-urlencoded'
                 },
                 data: {

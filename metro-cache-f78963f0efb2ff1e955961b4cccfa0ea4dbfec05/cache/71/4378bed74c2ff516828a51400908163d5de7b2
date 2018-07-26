@@ -468,7 +468,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                             }
                         },
                         _react3.default.createElement(_nativeBase.Spinner, {
-                            color: "blue",
+                            color: "#f16334",
                             __source: {
                                 fileName: _jsxFileName,
                                 lineNumber: 94
@@ -476,7 +476,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         })
                     ) : _react3.default.createElement(Main, {
                         img: this.props.mangaDetailsReducer.manga.img,
-                        title: this.props.mangaDetailsReducer.manga.title,
+                        title: this.props.mangaDetailsReducer.manga.titleMal,
                         ranked: this.props.mangaDetailsReducer.manga.ranked,
                         popularity: this.props.mangaDetailsReducer.manga.popularity,
                         score: this.props.mangaDetailsReducer.manga.score,

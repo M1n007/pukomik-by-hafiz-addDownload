@@ -91,12 +91,12 @@ class MangaDetails extends Component{
             
                 {this.props.mangaDetailsReducer.isLoading == true ? (
                      <View style={styles.isLoading}>
-                        <Spinner color='blue' />
+                        <Spinner color='#f16334' />
                     </View>
                 ): (
                     <Main 
                         img = {this.props.mangaDetailsReducer.manga.img}
-                        title = {this.props.mangaDetailsReducer.manga.title}
+                        title = {this.props.mangaDetailsReducer.manga.titleMal}
                         ranked = {this.props.mangaDetailsReducer.manga.ranked}
                         popularity = {this.props.mangaDetailsReducer.manga.popularity}
                         score = {this.props.mangaDetailsReducer.manga.score}

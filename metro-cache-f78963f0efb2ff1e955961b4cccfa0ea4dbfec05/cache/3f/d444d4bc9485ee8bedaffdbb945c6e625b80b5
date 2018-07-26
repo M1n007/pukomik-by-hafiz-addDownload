@@ -26,11 +26,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                 mainBrowse: {
                     screen: Screens.Browse,
                     navigationOptions: {
-                        headerTintColor: 'white',
-                        headerStyle: {
-                            backgroundColor: '#f16334'
-                        },
-                        title: 'Pukomik.com'
+                        header: null
                     }
                 }
             }),
@@ -44,7 +40,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         },
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 23
+                            lineNumber: 25
                         }
                     });
                 }
@@ -74,7 +70,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         },
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 44
+                            lineNumber: 46
                         }
                     });
                 }
@@ -104,7 +100,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         },
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 65
+                            lineNumber: 67
                         }
                     });
                 }
@@ -159,18 +155,6 @@ __d(function (global, _require, module, exports, _dependencyMap) {
         },
         Pages: {
             screen: Screens.Pages,
-            navigationOptions: {
-                header: null
-            }
-        },
-        BrowseM: {
-            screen: Screens.BrowseM,
-            navigationOptions: {
-                header: null
-            }
-        },
-        Testing: {
-            screen: Screens.Testing,
             navigationOptions: {
                 header: null
             }
