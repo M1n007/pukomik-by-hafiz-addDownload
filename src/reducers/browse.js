@@ -32,6 +32,26 @@ const browseReducer = (state = initialState, action)=>{
         case 'GET_MANGAS_RESET':
         return initialState
 
+        case 'SEARCH_MANGA_PENDING':
+        return {
+            ...state,
+            isLoading: true, 
+            isFailed: false
+        }
+        case 'SEARCH_MANGA_FULFILLED':
+        return {
+            ...state,
+            isLoading: false, 
+            isFailed: false,
+            dataSearch: action.payload.data.data
+        }
+        case 'SEARCH_MANGA_REJECTED':
+        return {
+            ...state,
+            isLoading: false, 
+            isFailed: true
+        }
+
         default:
         return state
     }

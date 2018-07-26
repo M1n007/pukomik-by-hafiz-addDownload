@@ -2,7 +2,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
-    exports.getMangas = undefined;
+    exports.searchManga = exports.getMangas = undefined;
 
     var _axios = _require(_dependencyMap[0], "axios");
 
@@ -13,7 +13,6 @@ __d(function (global, _require, module, exports, _dependencyMap) {
     function getMangas(start, rows) {
         return {
             type: 'GET_MANGAS',
-            rows: 2,
             payload: (0, _axios2.default)({
                 method: 'POST',
                 url: 'http://192.168.56.1/api/get_mangas.php',
@@ -29,5 +28,23 @@ __d(function (global, _require, module, exports, _dependencyMap) {
         };
     }
 
+    function searchManga(search) {
+        return {
+            type: 'SEARCH_MANGA',
+            payload: (0, _axios2.default)({
+                method: 'POST',
+                url: 'http://192.168.56.1/api/get_mangas_where.php',
+                headers: {
+                    'content-type': 'application/x-www-form-urlencoded'
+                },
+                data: {
+                    where: search,
+                    key: 'da3a9900-5c2e-4ee1-a660-94929dddf08e'
+                }
+            })
+        };
+    }
+
     exports.getMangas = getMangas;
+    exports.searchManga = searchManga;
 });

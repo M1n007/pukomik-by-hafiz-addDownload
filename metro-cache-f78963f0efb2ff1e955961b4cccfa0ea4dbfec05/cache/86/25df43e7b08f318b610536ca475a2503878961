@@ -42,6 +42,25 @@ __d(function (global, _require, module, exports, _dependencyMap) {
             case 'GET_MANGAS_RESET':
                 return initialState;
 
+            case 'SEARCH_MANGA_PENDING':
+                return _extends({}, state, {
+                    isLoading: true,
+                    isFailed: false
+                });
+
+            case 'SEARCH_MANGA_FULFILLED':
+                return _extends({}, state, {
+                    isLoading: false,
+                    isFailed: false,
+                    dataSearch: action.payload.data.data
+                });
+
+            case 'SEARCH_MANGA_REJECTED':
+                return _extends({}, state, {
+                    isLoading: false,
+                    isFailed: true
+                });
+
             default:
                 return state;
         }

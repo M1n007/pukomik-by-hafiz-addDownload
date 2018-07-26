@@ -80,9 +80,9 @@ class BrowseSearch extends PureComponent{
 class Browse extends Component{
 
     state = {
-        scrollIndex:0,
         filter: true,
         isSearch: false,
+        search:''
     }
 
 
@@ -101,6 +101,10 @@ class Browse extends Component{
 
     handleOnReach = ()=>{
         this.props.dispatch(browseAction.getMangas(this.props.browseReducer.startPage,rows))
+    }
+
+    handleSearch = ()=>{
+        this.props.dispatch(browseAction.searchManga(this.state.search))
     }
 
     _keyExtractor = (item, index) => item.id
@@ -124,10 +128,10 @@ class Browse extends Component{
                         searchable={{
                             autoFocus: true,
                             placeholder: 'Search',
-                            // onChangeText: (search)=>this.setState({search}),
+                            onChangeText: (search)=>this.setState({search}),
                             onSearchPressed: ()=>this.setState({isSearch: true}),
                             onSearchClosed: ()=>this.setState({isSearch: false}),
-                            // onSubmitEditing: this.handleSearch
+                            onSubmitEditing: this.handleSearch
                         }}
                         rightElement={{
                             menu: {
@@ -148,8 +152,9 @@ class Browse extends Component{
                         <Animatable.View animation="" style={styles.searchWrapper}>
                             <BrowseSearch
                                 isLoading = {this.props.browseReducer.isLoading}
-                                data = {this.props.browseReducer.data}
-                                extraData = {this.props.browseReducer.data}
+                                data = {this.props.browseReducer.dataSearch}
+                                extraData = {this.props.browseReducer.dataSearch}
+                                navigation = {this.props.navigation}
                             />
                         </Animatable.View>
 

@@ -283,13 +283,15 @@ __d(function (global, _require, module, exports, _dependencyMap) {
             }
 
             return _ret2 = (_temp2 = (_this3 = _possibleConstructorReturn(this, (_ref3 = Browse.__proto__ || Object.getPrototypeOf(Browse)).call.apply(_ref3, [this].concat(args))), _this3), _this3.state = {
-                scrollIndex: 0,
                 filter: true,
-                isSearch: false
+                isSearch: false,
+                search: ''
             }, _this3.handleOnPull = function () {
                 _this3.getReset();
             }, _this3.handleOnReach = function () {
                 _this3.props.dispatch(browseAction.getMangas(_this3.props.browseReducer.startPage, rows));
+            }, _this3.handleSearch = function () {
+                _this3.props.dispatch(browseAction.searchManga(_this3.state.search));
             }, _this3._keyExtractor = function (item, index) {
                 return item.id;
             }, _this3._renderItem = function (_ref4) {
@@ -306,7 +308,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                     },
                     __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 109
+                        lineNumber: 113
                     }
                 });
             }, _temp2), _possibleConstructorReturn(_this3, _ret2);
@@ -353,7 +355,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         },
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 121
+                            lineNumber: 125
                         }
                     },
                     _react3.default.createElement(_reactNativeMaterialUi.Toolbar, {
@@ -361,6 +363,11 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         searchable: {
                             autoFocus: true,
                             placeholder: 'Search',
+                            onChangeText: function onChangeText(search) {
+                                return _this4.setState({
+                                    search: search
+                                });
+                            },
                             onSearchPressed: function onSearchPressed() {
                                 return _this4.setState({
                                     isSearch: true
@@ -370,7 +377,8 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                 return _this4.setState({
                                     isSearch: false
                                 });
-                            }
+                            },
+                            onSubmitEditing: this.handleSearch
                         },
                         rightElement: {
                             menu: {
@@ -388,7 +396,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         },
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 122
+                            lineNumber: 126
                         }
                     }),
                     this.state.isSearch == true ? _react3.default.createElement(
@@ -398,16 +406,17 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                             style: styles.searchWrapper,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 148
+                                lineNumber: 152
                             }
                         },
                         _react3.default.createElement(BrowseSearch, {
                             isLoading: this.props.browseReducer.isLoading,
-                            data: this.props.browseReducer.data,
-                            extraData: this.props.browseReducer.data,
+                            data: this.props.browseReducer.dataSearch,
+                            extraData: this.props.browseReducer.dataSearch,
+                            navigation: this.props.navigation,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 149
+                                lineNumber: 153
                             }
                         })
                     ) : null,
@@ -417,7 +426,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                             background: _reactNative.TouchableNativeFeedback.SelectableBackground(),
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 158
+                                lineNumber: 163
                             }
                         },
                         _react3.default.createElement(
@@ -428,7 +437,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                 style: styles.filterWrappper,
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 161
+                                    lineNumber: 166
                                 }
                             },
                             _react3.default.createElement(
@@ -437,7 +446,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                     style: styles.filterText,
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 162
+                                        lineNumber: 167
                                     }
                                 },
                                 "Sort by"
@@ -460,7 +469,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         },
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 167
+                            lineNumber: 172
                         }
                     })
                 );
