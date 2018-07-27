@@ -49,27 +49,27 @@ const Main = createBottomTabNavigator({
             }
         }
     },
-    tabDownloads: {
-        screen: createStackNavigator({
-            mainBookmark: {
-                screen: Screens.Downloads,
-                navigationOptions: {
-                    headerTintColor: 'white',
-                    headerStyle: {
-                        backgroundColor: '#f16334'
-                    },
-                    title: 'Download',
-                }
-            }
-        }),
-        navigationOptions: {
-            tabBarIcon: ({focused, tintColor}) => {
-              return <Icon name="md-cloud-download" style={{
-                color: focused == true ? '#f16334' : '#e0e0e0'
-              }}/>
-            }
-        }
-    }
+    // tabDownloads: {
+    //     screen: createStackNavigator({
+    //         mainBookmark: {
+    //             screen: Screens.Downloads,
+    //             navigationOptions: {
+    //                 headerTintColor: 'white',
+    //                 headerStyle: {
+    //                     backgroundColor: '#f16334'
+    //                 },
+    //                 title: 'Download',
+    //             }
+    //         }
+    //     }),
+    //     navigationOptions: {
+    //         tabBarIcon: ({focused, tintColor}) => {
+    //           return <Icon name="md-cloud-download" style={{
+    //             color: focused == true ? '#f16334' : '#e0e0e0'
+    //           }}/>
+    //         }
+    //     }
+    // }
 },
 {
     tabBarOptions: {

@@ -1,7 +1,7 @@
 import React,{Component,PureComponent} from 'react'
-import {View,Text,StyleSheet,Image,Dimensions,TouchableNativeFeedback,ScrollView, FlatList} from 'react-native'
-import {Toolbar,ThemeProvider} from 'react-native-material-ui'
-import {Content,Container,Spinner} from 'native-base'
+import {View,Text,StyleSheet,Image,TouchableNativeFeedback, FlatList,AsyncStorage} from 'react-native'
+import {Toolbar} from 'react-native-material-ui'
+import {Content,Container,Spinner,Button,Icon} from 'native-base'
 import * as Animatable from 'react-native-animatable'
 import { connect } from 'react-redux';
 import * as browseAction from '../../actions/browse'
@@ -83,23 +83,49 @@ class BrowseSearch extends PureComponent{
 class Browse extends Component{
 
     state = {
-        filter: false,
+        filterButton: false,
+        filter: {
+            sortBy: 'A - Z',
+        },
         isSearch: false,
-        search:''
+        search:'',
+        modal: {
+            filter: false,
+            sortBy:false
+        }
     }
 
 
     componentDidMount(){
-        this.props.dispatch(browseAction.getMangas(0,rows)).then(()=>{
+        this.props.dispatch(browseAction.getMangas(0,rows,this.state.filter.sortBy)).then(()=>{
             this.setState({
-                filter: true
+                filterButton: true
             })
+
+            // alert(JSON.stringify(this.props.browseReducer))
         })
+        this._retrieveData()
     }
+
+    _retrieveData = async () => {
+        try {
+          const value = await AsyncStorage.getItem('mangaBookmarks')
+          if (value !== null) {
+            this.props.dispatch({
+                type: 'PUSH_BOOKMARK',
+                payload: {
+                    bookmarks: JSON.parse(value)
+                }
+            })
+          }
+         } catch (error) {
+            alert(error)
+         }
+      }
 
     async getReset(){
         await this.props.dispatch({type: 'GET_MANGAS_RESET'})
-        this.props.dispatch(browseAction.getMangas(0,rows))
+        this.props.dispatch(browseAction.getMangas(0,rows,this.state.filter.sortBy))
     }
 
     handleOnPull = ()=>{
@@ -107,12 +133,43 @@ class Browse extends Component{
     }
 
     handleOnReach = ()=>{
-        this.props.dispatch(browseAction.getMangas(this.props.browseReducer.startPage,rows))
+        this.props.dispatch(browseAction.getMangas(this.props.browseReducer.startPage,rows,this.state.filter.sortBy))
     }
 
     handleSearch = ()=>{
         this.props.dispatch(browseAction.searchManga(this.state.search))
     }
+
+    handleModal = (type)=>{
+        if(type =='filter'){
+            this.setState({
+                modal: {
+                    ...this.state.modal,
+                    filter: !this.state.modal.filter
+                }
+            })
+        }
+        if(type =='sortBy'){
+            this.setState({
+                modal: {
+                    ...this.state.modal,
+                    sortBy: !this.state.modal.sortBy
+                }
+            })
+        }
+    }
+    
+    handleSortBy = (sortBy, type)=>{
+        this.setState({
+            filter: {
+                sortBy
+            }
+        })
+        this.handleModal(type)
+        this.getReset()
+    }
+    
+    
 
     _keyExtractor = (item, index) => item.id
 
@@ -135,14 +192,14 @@ class Browse extends Component{
                             autoFocus: true,
                             placeholder: 'Search',
                             onChangeText: (search)=>this.setState({search}),
-                            onSearchPressed: ()=>this.setState({isSearch: true,filter: false}),
-                            onSearchClosed: ()=>this.setState({isSearch: false,filter: true}),
+                            onSearchPressed: ()=>this.setState({isSearch: true,filterButton: false}),
+                            onSearchClosed: ()=>this.setState({isSearch: false,filterButton: true}),
                             onSubmitEditing: this.handleSearch
                         }}
                         rightElement={{
                             menu: {
                                 icon: "more-vert",
-                                labels: ["About","Settings"]
+                                labels: ["About"]
                             }
                         }}
                         style = {{
@@ -150,12 +207,12 @@ class Browse extends Component{
                                 backgroundColor: '#f16334'
                             }
                         }}
-                        onRightElementPress={ (label) => { alert(JSON.stringify(label)) }}
+                        onRightElementPress={ (label) => alert('Created by Jondes @haffjjj')}
                     />
 
-                    {this.state.filter == true ? (
+                    {this.state.filterButton == true ? (
                         <Animatable.View animation="fadeInUp" iterationCount={1} style={styles.filterWrappper}>
-                            <TouchableNativeFeedback
+                            {/* <TouchableNativeFeedback
                                 background={TouchableNativeFeedback.SelectableBackground()}
                                 onPress={()=>alert('handle filter')}
                             >
@@ -163,19 +220,26 @@ class Browse extends Component{
                                     <Text style={styles.filterText}>Filter</Text>
                                 </View>
                             </TouchableNativeFeedback>
-                            <View style={{height: 20,width: 2, backgroundColor:'#e8e8e8'}}/>
+                            <View style={{height: 20,width: 2, backgroundColor:'#e8e8e8'}}/> */}
                             <TouchableNativeFeedback
                                 background={TouchableNativeFeedback.SelectableBackground()}
-                                onPress={()=>alert('handle sor by')}
+                                onPress={()=>this.handleModal('sortBy')}
                             >
                                 <View style={styles.filterItem}>
-                                    <Text style={styles.filterText}>Sort by</Text>
+                                    {this.state.filter.sortBy == null ? (
+                                        <Text style={styles.filterText}>Sort by</Text>
+                                    ) : (
+                                        <View style={styles.filterSortByValueWrapper}>
+                                            <Icon name='md-checkmark-circle' style={styles.filterSortByValue}/>
+                                            <Text style={styles.filterTextBold}>{this.state.filter.sortBy}</Text>
+                                        </View>
+                                    )}
                                 </View>
                             </TouchableNativeFeedback>
                         </Animatable.View>
                     ): null}
 
-
+                    {/* <Text>{JSON.stringify(this.state.filter.sortBy)}</Text> */}
 
                     {/* isSearch */}
                     {this.state.isSearch == true ?(
@@ -191,9 +255,28 @@ class Browse extends Component{
                     ): null}
 
                     {/* sort by */}
-                    <Modal isVisible={true}>
-                        <View style={{ flex: 1 }}>
-                            <Text>I am the modal content!</Text>
+                    <Modal 
+                        isVisible={this.state.modal.sortBy}
+                        onBackButtonPress = {()=>this.handleModal('sortBy')}
+                    >
+                        <View style={styles.modalWrapper}>
+                            <View style={styles.modalItem}>
+                                <Button style={{backgroundColor: 'white'}} onPress={()=>this.handleSortBy('A - Z','sortBy')} full>
+                                    <Text style={{color:'#515151'}}>A - Z</Text>
+                                </Button>
+                                <Button style={{backgroundColor: 'white'}} onPress={()=>this.handleSortBy('Z - A','sortBy')} full>
+                                    <Text style={{color:'#515151'}}>Z - A</Text>
+                                </Button>
+                                {/* <Button style={{backgroundColor: 'white'}} onPress={()=>this.handleSortBy('Last Update','sortBy')} full>
+                                    <Text style={{color:'#515151'}}>Last Update</Text>
+                                </Button> */}
+                                <Button style={{backgroundColor: 'white'}} onPress={()=>this.handleSortBy('Score','sortBy')} full>
+                                    <Text style={{color:'#515151'}}>Score</Text>
+                                </Button>
+                                <Button style={{backgroundColor: 'white'}} onPress={()=>this.handleSortBy('Popularity','sortBy')} full>
+                                    <Text style={{color:'#515151'}}>Popularity</Text>
+                                </Button>
+                            </View>
                         </View>
                     </Modal>
                     
@@ -228,6 +311,18 @@ const mapStateToProps = (state)=>{
 export default connect(mapStateToProps)(Browse)
 
 const styles = StyleSheet.create({
+    modalItem: {
+        width: 200,
+        // height: 200,
+        backgroundColor: 'white',
+        borderRadius: 5,
+        overflow: 'hidden'
+    },
+    modalWrapper: { 
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
+     },
     searchWrapper: {
         top: 54,
         height: '100%',
@@ -269,7 +364,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     scoreValueWrapper:{
-        width: 30,
+        width: 35,
         backgroundColor: '#F16334',
         justifyContent:'center',
         alignItems: 'center',
@@ -289,21 +384,42 @@ const styles = StyleSheet.create({
     filterWrappper: {
         position: 'absolute',
         zIndex: 1,
-        bottom:0,
+        bottom:10,
+        // width: '100%',
         width: '100%',
         // left: '50%',
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
-        backgroundColor: 'white',
+        // backgroundColor: 'white',
         elevation: 40,
     },
     filterItem: {
-        width: '50%',
-        padding: 10,
-        alignItems: 'center'
+        // width: '50%',
+        padding: 8,
+        paddingLeft: 15,
+        paddingRight: 15,
+        alignItems: 'center',
+
+        backgroundColor: 'white',
+        borderRadius: 50,
+        elevation: 20,
+
     },
     filterText: {
-        color: '#757575'
+        color: '#515151'
+    },
+    filterTextBold: {
+        color: '#515151',
+        fontWeight: 'bold',
+    },
+    filterSortByValueWrapper: {
+        flexDirection:'row',
+        alignItems: 'center'
+    },
+    filterSortByValue: {
+        fontSize: 13,
+        marginRight: 5,
+        color:'#F16334'
     }
 })
