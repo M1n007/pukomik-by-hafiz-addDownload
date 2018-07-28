@@ -6,6 +6,7 @@ import * as Animatable from 'react-native-animatable'
 import { connect } from 'react-redux';
 import * as browseAction from '../../actions/browse'
 import Modal from "react-native-modal";
+import moment from 'moment'
 
 const rows = 15
 
@@ -27,15 +28,17 @@ class Manga extends PureComponent{
                 source={{uri: this.props.img}}
                 resizeMode="cover"
                 />
-            </View>
-            <Text numberOfLines={1} style={styles.mangaTitle}>{this.props.title}</Text>
             <View style = {styles.scoreWrapper}>
-                <Text style={styles.scoreText}>Score</Text>
+                {/* <Text style={styles.scoreText}>Score</Text> */}
                 <View style={styles.scoreValueWrapper}>
                     <Text style={styles.scoreValueText}>{this.props.score}</Text>
                 </View>
             </View>
-            <Text style={styles.lChapterText}>Popularity #{this.props.popularity}</Text>
+            </View>
+            <Text numberOfLines={1} style={styles.mangaTitle}>{this.props.title}</Text>
+            
+            <Text style={styles.lChapterText}>Last Chapter {this.props.lastChapter}</Text>
+            <Text style={styles.lChapterText}>{moment(this.props.created).fromNow()}</Text>
         </View>
         </TouchableNativeFeedback>
         )
@@ -51,11 +54,12 @@ class BrowseSearch extends PureComponent{
             img = {item.img}
             title = {item.title}
             score = {item.score}
-            popularity = {item.popularity}
+            lastChapter = {item.chapter}
+            created = {item.created}
             onPress={()=>this.props.navigation.navigate('MangaDetails',{id: item.id})}
         />
     )
-
+ 
     render(){
         return( 
                 <Content>
@@ -139,7 +143,7 @@ class Browse extends Component{
     handleSearch = ()=>{
         this.props.dispatch(browseAction.searchManga(this.state.search))
     }
-
+dswws
     handleModal = (type)=>{
         if(type =='filter'){
             this.setState({
@@ -178,7 +182,8 @@ class Browse extends Component{
             img = {item.img}
             title = {item.title}
             score = {item.score}
-            popularity = {item.popularity}
+            lastChapter = {item.chapter}
+            created = {item.created}
             onPress={()=>this.props.navigation.navigate('MangaDetails',{id: item.id})}
         />
     )
@@ -273,8 +278,8 @@ class Browse extends Component{
                                 <Button style={{backgroundColor: 'white'}} onPress={()=>this.handleSortBy('Score','sortBy')} full>
                                     <Text style={{color:'#515151'}}>Score</Text>
                                 </Button>
-                                <Button style={{backgroundColor: 'white'}} onPress={()=>this.handleSortBy('Popularity','sortBy')} full>
-                                    <Text style={{color:'#515151'}}>Popularity</Text>
+                                <Button style={{backgroundColor: 'white'}} onPress={()=>this.handleSortBy('Last Update','sortBy')} full>
+                                    <Text style={{color:'#515151'}}>Last Update</Text>
                                 </Button>
                             </View>
                         </View>
@@ -355,13 +360,18 @@ const styles = StyleSheet.create({
     imageWrapper: {
         width:'100%',
         height:140,
-        backgroundColor: '#f2f2f2'
+        backgroundColor: '#f2f2f2',
+        borderRadius: 5,
+        overflow: 'hidden'
     },
     mangaTitle: {
         color: '#121212'
     },
     scoreWrapper: {
         flexDirection: 'row',
+        position: 'absolute',
+        top: 5,
+        right: 5
     },
     scoreValueWrapper:{
         width: 35,

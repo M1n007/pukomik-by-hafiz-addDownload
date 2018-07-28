@@ -1,7 +1,8 @@
 import React,{Component} from 'react'
 import {Text, View, StyleSheet, Dimensions, Image, BackAndroid,TouchableNativeFeedback,AsyncStorage} from 'react-native'
-import {Content, Container, Button, Spinner, Icon,Toast} from 'native-base'
+import {Content, Container, Button, Spinner, Icon} from 'native-base'
 import {connect} from 'react-redux'
+import moment from 'moment'
 
 import * as bookmarkAction from '../actions/bookmarks'
 import * as mangaDetailsAction from '../actions/mangaDetails'
@@ -39,12 +40,12 @@ class Main extends Component{
                         </View>
                         <View style={{flexDirection: 'row'}}>
                             <View style={{flex: 1}}>
-                                <Text style={styles.mangaDetailsSource}>Source</Text>
-                                <Text style={styles.mangaDetailsSourceContent}>Myanimelist</Text>
+                                <Text style={styles.mangaDetailsLastChapter}>Last Chapter</Text>
+                                <Text style={styles.mangaDetailsLastChapterContent}>{this.props.lastChapter}</Text>
                             </View>
                             <View style={{flex: 1}}>
                                 <Text style={styles.mangaDetailsLastUpdate}>Last Update</Text>
-                                <Text style={styles.mangaDetailsLastUpdateContent}>17 April</Text>
+                                <Text style={styles.mangaDetailsLastUpdateContent}>{moment(this.props.lastUpdate).fromNow()}</Text>
                             </View>
                         </View>
                         {/* <Text>Last Chapter</Text> */}
@@ -154,6 +155,8 @@ class MangaDetails extends Component{
                         goChapterList = {()=>this.props.navigation.navigate('ChapterList')}
                         isBookmark = {this.props.bookmarksReducer.bookmarks.includes(this.props.mangaDetailsReducer.manga.id)}
                         handleBookmark = {()=>this.handleBookmark(this.props.mangaDetailsReducer.manga.id)}
+                        lastChapter = {this.props.mangaDetailsReducer.manga.chapter}
+                        lastUpdate = {this.props.mangaDetailsReducer.manga.created}
                     />
                 )}                 
             </Container>
@@ -227,11 +230,11 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 12,
     },
-    mangaDetailsSource: {
+    mangaDetailsLastChapter: {
         fontSize: 12,
         color: '#121212'
     },
-    mangaDetailsSourceContent: {
+    mangaDetailsLastChapterContent: {
         fontSize: 12,
         color: '#989898'
     },

@@ -1,13 +1,12 @@
 import axios from 'axios'
+import config from '../config'
 
 function getChapterList(id){
     return {
         type: 'GET_CHAPTER_LIST',
         payload: axios({
             method: 'POST',
-            // url: 'http://192.168.56.1/api/get_chapters.php',
-            // url: 'http://192.168.43.142/api/get_chapters.php',
-            url: 'http://149.28.146.211/api/get_chapters.php',
+            url: `${config.uri}/api/get_chapters.php`,
             headers: { 'content-type': 'application/x-www-form-urlencoded' },
             data: {
                 id,

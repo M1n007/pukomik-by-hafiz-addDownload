@@ -1,0 +1,888 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _react2 = _require(_dependencyMap[0], "react");
+
+    var _react3 = _interopRequireDefault(_react2);
+
+    var _index = _require(_dependencyMap[1], "./../../../node_modules/react-transform-hmr/lib/index.js");
+
+    var _index2 = _interopRequireDefault(_index);
+
+    var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+    var _jsxFileName = "/home/neo/NodeJS/Rn/pukomikcom/src/screens/main/Browse.js";
+
+    var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+    var _reactNative = _require(_dependencyMap[2], "react-native");
+
+    var _reactNativeMaterialUi = _require(_dependencyMap[3], "react-native-material-ui");
+
+    var _nativeBase = _require(_dependencyMap[4], "native-base");
+
+    var _reactNativeAnimatable = _require(_dependencyMap[5], "react-native-animatable");
+
+    var Animatable = _interopRequireWildcard(_reactNativeAnimatable);
+
+    var _reactRedux = _require(_dependencyMap[6], "react-redux");
+
+    var _browse = _require(_dependencyMap[7], "../../actions/browse");
+
+    var browseAction = _interopRequireWildcard(_browse);
+
+    var _reactNativeModal = _require(_dependencyMap[8], "react-native-modal");
+
+    var _reactNativeModal2 = _interopRequireDefault(_reactNativeModal);
+
+    var _moment = _require(_dependencyMap[9], "moment");
+
+    var _moment2 = _interopRequireDefault(_moment);
+
+    function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+    function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+    var _components = {
+        Manga: {
+            displayName: "Manga"
+        },
+        BrowseSearch: {
+            displayName: "BrowseSearch"
+        },
+        Browse: {
+            displayName: "Browse"
+        }
+    };
+
+    var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+        filename: "/home/neo/NodeJS/Rn/pukomikcom/src/screens/main/Browse.js",
+        components: _components,
+        locals: [module],
+        imports: [_react3.default]
+    });
+
+    function _wrapComponent(id) {
+        return function (Component) {
+            return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+        };
+    }
+
+    var rows = 15;
+
+    var Manga = _wrapComponent("Manga")(function (_PureComponent) {
+        _inherits(Manga, _PureComponent);
+
+        function Manga() {
+            _classCallCheck(this, Manga);
+
+            return _possibleConstructorReturn(this, (Manga.__proto__ || Object.getPrototypeOf(Manga)).apply(this, arguments));
+        }
+
+        _createClass(Manga, [{
+            key: "render",
+            value: function render() {
+                return _react3.default.createElement(
+                    _reactNative.TouchableNativeFeedback,
+                    {
+                        background: _reactNative.TouchableNativeFeedback.SelectableBackgroundBorderless(),
+                        onPress: this.props.onPress,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 17
+                        }
+                    },
+                    _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: styles.listWrapper,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 21
+                            }
+                        },
+                        _react3.default.createElement(
+                            _reactNative.View,
+                            {
+                                style: styles.imageWrapper,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 22
+                                }
+                            },
+                            _react3.default.createElement(_reactNative.Image, {
+                                style: {
+                                    height: '100%',
+                                    width: '100%'
+                                },
+                                source: {
+                                    uri: this.props.img
+                                },
+                                resizeMode: "cover",
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 23
+                                }
+                            }),
+                            _react3.default.createElement(
+                                _reactNative.View,
+                                {
+                                    style: styles.scoreWrapper,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 31
+                                    }
+                                },
+                                _react3.default.createElement(
+                                    _reactNative.View,
+                                    {
+                                        style: styles.scoreValueWrapper,
+                                        __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 33
+                                        }
+                                    },
+                                    _react3.default.createElement(
+                                        _reactNative.Text,
+                                        {
+                                            style: styles.scoreValueText,
+                                            __source: {
+                                                fileName: _jsxFileName,
+                                                lineNumber: 34
+                                            }
+                                        },
+                                        this.props.score
+                                    )
+                                )
+                            )
+                        ),
+                        _react3.default.createElement(
+                            _reactNative.Text,
+                            {
+                                numberOfLines: 1,
+                                style: styles.mangaTitle,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 38
+                                }
+                            },
+                            this.props.title
+                        ),
+                        _react3.default.createElement(
+                            _reactNative.Text,
+                            {
+                                style: styles.lChapterText,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 40
+                                }
+                            },
+                            "Last Chapter ",
+                            this.props.lastChapter
+                        ),
+                        _react3.default.createElement(
+                            _reactNative.Text,
+                            {
+                                style: styles.lChapterText,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 41
+                                }
+                            },
+                            (0, _moment2.default)(this.props.created).fromNow()
+                        )
+                    )
+                );
+            }
+        }]);
+
+        return Manga;
+    }(_react2.PureComponent));
+
+    var BrowseSearch = _wrapComponent("BrowseSearch")(function (_PureComponent2) {
+        _inherits(BrowseSearch, _PureComponent2);
+
+        function BrowseSearch() {
+            var _ref;
+
+            var _temp, _this2, _ret;
+
+            _classCallCheck(this, BrowseSearch);
+
+            for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+                args[_key] = arguments[_key];
+            }
+
+            return _ret = (_temp = (_this2 = _possibleConstructorReturn(this, (_ref = BrowseSearch.__proto__ || Object.getPrototypeOf(BrowseSearch)).call.apply(_ref, [this].concat(args))), _this2), _this2._keyExtractor = function (item, index) {
+                return item.id;
+            }, _this2._renderItem = function (_ref2) {
+                var item = _ref2.item;
+                return _react3.default.createElement(Manga, {
+                    img: item.img,
+                    title: item.title,
+                    score: item.score,
+                    lastChapter: item.chapter,
+                    created: item.created,
+                    onPress: function onPress() {
+                        return _this2.props.navigation.navigate('MangaDetails', {
+                            id: item.id
+                        });
+                    },
+                    __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 53
+                    }
+                });
+            }, _temp), _possibleConstructorReturn(_this2, _ret);
+        }
+
+        _createClass(BrowseSearch, [{
+            key: "render",
+            value: function render() {
+                return _react3.default.createElement(
+                    _nativeBase.Content,
+                    {
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 65
+                        }
+                    },
+                    this.props.isLoading == true ? _react3.default.createElement(_nativeBase.Spinner, {
+                        color: "#f16334",
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 68
+                        }
+                    }) : null,
+                    _react3.default.createElement(_reactNative.FlatList, {
+                        contentContainerStyle: styles.bodyWrapper,
+                        data: this.props.data,
+                        extraData: this.props.extraData,
+                        keyExtractor: this._keyExtractor,
+                        renderItem: this._renderItem,
+                        numColumns: 3,
+                        columnWrapperStyle: {
+                            justifyContent: 'space-around'
+                        },
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 71
+                        }
+                    })
+                );
+            }
+        }]);
+
+        return BrowseSearch;
+    }(_react2.PureComponent));
+
+    var Browse = _wrapComponent("Browse")(function (_Component) {
+        _inherits(Browse, _Component);
+
+        function Browse() {
+            var _ref3,
+                _this4 = this;
+
+            var _temp2, _this3, _ret2;
+
+            _classCallCheck(this, Browse);
+
+            for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+                args[_key2] = arguments[_key2];
+            }
+
+            return _ret2 = (_temp2 = (_this3 = _possibleConstructorReturn(this, (_ref3 = Browse.__proto__ || Object.getPrototypeOf(Browse)).call.apply(_ref3, [this].concat(args))), _this3), _this3.state = {
+                filterButton: false,
+                filter: {
+                    sortBy: 'A - Z'
+                },
+                isSearch: false,
+                search: '',
+                modal: {
+                    filter: false,
+                    sortBy: false
+                }
+            }, _this3._retrieveData = function _callee() {
+                var value;
+                return regeneratorRuntime.async(function _callee$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                            case 0:
+                                _context.prev = 0;
+                                _context.next = 3;
+                                return regeneratorRuntime.awrap(_reactNative.AsyncStorage.getItem('mangaBookmarks'));
+
+                            case 3:
+                                value = _context.sent;
+
+                                if (value !== null) {
+                                    _this3.props.dispatch({
+                                        type: 'PUSH_BOOKMARK',
+                                        payload: {
+                                            bookmarks: JSON.parse(value)
+                                        }
+                                    });
+                                }
+
+                                _context.next = 10;
+                                break;
+
+                            case 7:
+                                _context.prev = 7;
+                                _context.t0 = _context["catch"](0);
+                                alert(_context.t0);
+
+                            case 10:
+                            case "end":
+                                return _context.stop();
+                        }
+                    }
+                }, null, _this4, [[0, 7]]);
+            }, _this3.handleOnPull = function () {
+                _this3.getReset();
+            }, _this3.handleOnReach = function () {
+                _this3.props.dispatch(browseAction.getMangas(_this3.props.browseReducer.startPage, rows, _this3.state.filter.sortBy));
+            }, _this3.handleSearch = function () {
+                _this3.props.dispatch(browseAction.searchManga(_this3.state.search));
+            }, _this3.handleModal = function (type) {
+                if (type == 'filter') {
+                    _this3.setState({
+                        modal: _extends({}, _this3.state.modal, {
+                            filter: !_this3.state.modal.filter
+                        })
+                    });
+                }
+
+                if (type == 'sortBy') {
+                    _this3.setState({
+                        modal: _extends({}, _this3.state.modal, {
+                            sortBy: !_this3.state.modal.sortBy
+                        })
+                    });
+                }
+            }, _this3.handleSortBy = function (sortBy, type) {
+                _this3.setState({
+                    filter: {
+                        sortBy: sortBy
+                    }
+                });
+
+                _this3.handleModal(type);
+
+                _this3.getReset();
+            }, _this3._keyExtractor = function (item, index) {
+                return item.id;
+            }, _this3._renderItem = function (_ref4) {
+                var item = _ref4.item;
+                return _react3.default.createElement(Manga, {
+                    img: item.img,
+                    title: item.title,
+                    score: item.score,
+                    lastChapter: item.chapter,
+                    created: item.created,
+                    onPress: function onPress() {
+                        return _this3.props.navigation.navigate('MangaDetails', {
+                            id: item.id
+                        });
+                    },
+                    __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 181
+                    }
+                });
+            }, _temp2), _possibleConstructorReturn(_this3, _ret2);
+        }
+
+        _createClass(Browse, [{
+            key: "componentDidMount",
+            value: function componentDidMount() {
+                var _this5 = this;
+
+                this.props.dispatch(browseAction.getMangas(0, rows, this.state.filter.sortBy)).then(function () {
+                    _this5.setState({
+                        filterButton: true
+                    });
+                });
+
+                this._retrieveData();
+            }
+        }, {
+            key: "getReset",
+            value: function getReset() {
+                return regeneratorRuntime.async(function getReset$(_context2) {
+                    while (1) {
+                        switch (_context2.prev = _context2.next) {
+                            case 0:
+                                _context2.next = 2;
+                                return regeneratorRuntime.awrap(this.props.dispatch({
+                                    type: 'GET_MANGAS_RESET'
+                                }));
+
+                            case 2:
+                                this.props.dispatch(browseAction.getMangas(0, rows, this.state.filter.sortBy));
+
+                            case 3:
+                            case "end":
+                                return _context2.stop();
+                        }
+                    }
+                }, null, this);
+            }
+        }, {
+            key: "render",
+            value: function render() {
+                var _this6 = this;
+
+                return _react3.default.createElement(
+                    _nativeBase.Container,
+                    {
+                        style: {
+                            flex: 1,
+                            backgroundColor: 'white'
+                        },
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 193
+                        }
+                    },
+                    _react3.default.createElement(_reactNativeMaterialUi.Toolbar, {
+                        centerElement: "pukomik.com",
+                        searchable: {
+                            autoFocus: true,
+                            placeholder: 'Search',
+                            onChangeText: function onChangeText(search) {
+                                return _this6.setState({
+                                    search: search
+                                });
+                            },
+                            onSearchPressed: function onSearchPressed() {
+                                return _this6.setState({
+                                    isSearch: true,
+                                    filterButton: false
+                                });
+                            },
+                            onSearchClosed: function onSearchClosed() {
+                                return _this6.setState({
+                                    isSearch: false,
+                                    filterButton: true
+                                });
+                            },
+                            onSubmitEditing: this.handleSearch
+                        },
+                        rightElement: {
+                            menu: {
+                                icon: "more-vert",
+                                labels: ["About"]
+                            }
+                        },
+                        style: {
+                            container: {
+                                backgroundColor: '#f16334'
+                            }
+                        },
+                        onRightElementPress: function onRightElementPress(label) {
+                            return alert('Created by Jondes @haffjjj');
+                        },
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 194
+                        }
+                    }),
+                    this.state.filterButton == true ? _react3.default.createElement(
+                        Animatable.View,
+                        {
+                            animation: "fadeInUp",
+                            iterationCount: 1,
+                            style: styles.filterWrappper,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 219
+                            }
+                        },
+                        _react3.default.createElement(
+                            _reactNative.TouchableNativeFeedback,
+                            {
+                                background: _reactNative.TouchableNativeFeedback.SelectableBackground(),
+                                onPress: function onPress() {
+                                    return _this6.handleModal('sortBy');
+                                },
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 229
+                                }
+                            },
+                            _react3.default.createElement(
+                                _reactNative.View,
+                                {
+                                    style: styles.filterItem,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 233
+                                    }
+                                },
+                                this.state.filter.sortBy == null ? _react3.default.createElement(
+                                    _reactNative.Text,
+                                    {
+                                        style: styles.filterText,
+                                        __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 235
+                                        }
+                                    },
+                                    "Sort by"
+                                ) : _react3.default.createElement(
+                                    _reactNative.View,
+                                    {
+                                        style: styles.filterSortByValueWrapper,
+                                        __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 237
+                                        }
+                                    },
+                                    _react3.default.createElement(_nativeBase.Icon, {
+                                        name: "md-checkmark-circle",
+                                        style: styles.filterSortByValue,
+                                        __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 238
+                                        }
+                                    }),
+                                    _react3.default.createElement(
+                                        _reactNative.Text,
+                                        {
+                                            style: styles.filterTextBold,
+                                            __source: {
+                                                fileName: _jsxFileName,
+                                                lineNumber: 239
+                                            }
+                                        },
+                                        this.state.filter.sortBy
+                                    )
+                                )
+                            )
+                        )
+                    ) : null,
+                    this.state.isSearch == true ? _react3.default.createElement(
+                        Animatable.View,
+                        {
+                            animation: "",
+                            style: styles.searchWrapper,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 251
+                            }
+                        },
+                        _react3.default.createElement(BrowseSearch, {
+                            isLoading: this.props.browseReducer.isLoading,
+                            data: this.props.browseReducer.dataSearch,
+                            extraData: this.props.browseReducer.dataSearch,
+                            navigation: this.props.navigation,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 252
+                            }
+                        })
+                    ) : null,
+                    _react3.default.createElement(
+                        _reactNativeModal2.default,
+                        {
+                            isVisible: this.state.modal.sortBy,
+                            onBackButtonPress: function onBackButtonPress() {
+                                return _this6.handleModal('sortBy');
+                            },
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 263
+                            }
+                        },
+                        _react3.default.createElement(
+                            _reactNative.View,
+                            {
+                                style: styles.modalWrapper,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 267
+                                }
+                            },
+                            _react3.default.createElement(
+                                _reactNative.View,
+                                {
+                                    style: styles.modalItem,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 268
+                                    }
+                                },
+                                _react3.default.createElement(
+                                    _nativeBase.Button,
+                                    {
+                                        style: {
+                                            backgroundColor: 'white'
+                                        },
+                                        onPress: function onPress() {
+                                            return _this6.handleSortBy('A - Z', 'sortBy');
+                                        },
+                                        full: true,
+                                        __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 269
+                                        }
+                                    },
+                                    _react3.default.createElement(
+                                        _reactNative.Text,
+                                        {
+                                            style: {
+                                                color: '#515151'
+                                            },
+                                            __source: {
+                                                fileName: _jsxFileName,
+                                                lineNumber: 270
+                                            }
+                                        },
+                                        "A - Z"
+                                    )
+                                ),
+                                _react3.default.createElement(
+                                    _nativeBase.Button,
+                                    {
+                                        style: {
+                                            backgroundColor: 'white'
+                                        },
+                                        onPress: function onPress() {
+                                            return _this6.handleSortBy('Z - A', 'sortBy');
+                                        },
+                                        full: true,
+                                        __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 272
+                                        }
+                                    },
+                                    _react3.default.createElement(
+                                        _reactNative.Text,
+                                        {
+                                            style: {
+                                                color: '#515151'
+                                            },
+                                            __source: {
+                                                fileName: _jsxFileName,
+                                                lineNumber: 273
+                                            }
+                                        },
+                                        "Z - A"
+                                    )
+                                ),
+                                _react3.default.createElement(
+                                    _nativeBase.Button,
+                                    {
+                                        style: {
+                                            backgroundColor: 'white'
+                                        },
+                                        onPress: function onPress() {
+                                            return _this6.handleSortBy('Score', 'sortBy');
+                                        },
+                                        full: true,
+                                        __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 278
+                                        }
+                                    },
+                                    _react3.default.createElement(
+                                        _reactNative.Text,
+                                        {
+                                            style: {
+                                                color: '#515151'
+                                            },
+                                            __source: {
+                                                fileName: _jsxFileName,
+                                                lineNumber: 279
+                                            }
+                                        },
+                                        "Score"
+                                    )
+                                ),
+                                _react3.default.createElement(
+                                    _nativeBase.Button,
+                                    {
+                                        style: {
+                                            backgroundColor: 'white'
+                                        },
+                                        onPress: function onPress() {
+                                            return _this6.handleSortBy('Last Update', 'sortBy');
+                                        },
+                                        full: true,
+                                        __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 281
+                                        }
+                                    },
+                                    _react3.default.createElement(
+                                        _reactNative.Text,
+                                        {
+                                            style: {
+                                                color: '#515151'
+                                            },
+                                            __source: {
+                                                fileName: _jsxFileName,
+                                                lineNumber: 282
+                                            }
+                                        },
+                                        "Last Update"
+                                    )
+                                )
+                            )
+                        )
+                    ),
+                    _react3.default.createElement(_reactNative.FlatList, {
+                        contentContainerStyle: styles.bodyWrapper,
+                        refreshing: this.props.browseReducer.isLoading,
+                        onRefresh: this.handleOnPull,
+                        onEndReachedThreshold: 0.5,
+                        onEndReached: this.handleOnReach,
+                        data: this.props.browseReducer.data,
+                        extraData: this.props.browseReducer.data,
+                        keyExtractor: this._keyExtractor,
+                        renderItem: this._renderItem,
+                        numColumns: 3,
+                        columnWrapperStyle: {
+                            justifyContent: 'space-around'
+                        },
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 288
+                        }
+                    })
+                );
+            }
+        }]);
+
+        return Browse;
+    }(_react2.Component));
+
+    var mapStateToProps = function mapStateToProps(state) {
+        return {
+            browseReducer: state.browseReducer
+        };
+    };
+
+    exports.default = (0, _reactRedux.connect)(mapStateToProps)(Browse);
+
+    var styles = _reactNative.StyleSheet.create({
+        modalItem: {
+            width: 200,
+            backgroundColor: 'white',
+            borderRadius: 5,
+            overflow: 'hidden'
+        },
+        modalWrapper: {
+            flex: 1,
+            alignItems: 'center',
+            justifyContent: 'center'
+        },
+        searchWrapper: {
+            top: 54,
+            height: '100%',
+            width: '100%',
+            position: 'absolute',
+            backgroundColor: 'white',
+            zIndex: 1
+        },
+        categoryWrapper: {
+            flex: 1,
+            padding: 10
+        },
+        allMangaText: {
+            color: '#444444'
+        },
+        bodyWrapper: {
+            backgroundColor: 'white',
+            flexDirection: 'column',
+            paddingTop: 10
+        },
+        listWrapper: {
+            height: 200,
+            width: 110,
+            borderRadius: 5,
+            overflow: 'hidden',
+            backgroundColor: 'white',
+            padding: 5,
+            margin: 5
+        },
+        imageWrapper: {
+            width: '100%',
+            height: 140,
+            backgroundColor: '#f2f2f2',
+            borderRadius: 5,
+            overflow: 'hidden'
+        },
+        mangaTitle: {
+            color: '#121212'
+        },
+        scoreWrapper: {
+            flexDirection: 'row',
+            position: 'absolute',
+            top: 5,
+            right: 5
+        },
+        scoreValueWrapper: {
+            width: 35,
+            backgroundColor: '#F16334',
+            justifyContent: 'center',
+            alignItems: 'center',
+            borderRadius: 50,
+            marginLeft: 10
+        },
+        scoreValueText: {
+            color: 'white',
+            fontSize: 12
+        },
+        scoreText: {
+            fontSize: 12
+        },
+        lChapterText: {
+            fontSize: 12
+        },
+        filterWrappper: {
+            position: 'absolute',
+            zIndex: 1,
+            bottom: 10,
+            width: '100%',
+            flexDirection: 'row',
+            justifyContent: 'space-around',
+            alignItems: 'center',
+            elevation: 40
+        },
+        filterItem: {
+            padding: 8,
+            paddingLeft: 15,
+            paddingRight: 15,
+            alignItems: 'center',
+            backgroundColor: 'white',
+            borderRadius: 50,
+            elevation: 20
+        },
+        filterText: {
+            color: '#515151'
+        },
+        filterTextBold: {
+            color: '#515151',
+            fontWeight: 'bold'
+        },
+        filterSortByValueWrapper: {
+            flexDirection: 'row',
+            alignItems: 'center'
+        },
+        filterSortByValue: {
+            fontSize: 13,
+            marginRight: 5,
+            color: '#F16334'
+        }
+    });
+});

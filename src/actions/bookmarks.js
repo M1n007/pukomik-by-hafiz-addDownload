@@ -1,13 +1,12 @@
 import axios from 'axios'
+import config from '../config'
 
 function getMangaIn(mangain){
     return{
         type: 'GET_MANGA_IN',
         payload: axios({
             method: 'POST',
-            // url: 'http://192.168.43.142/api/get_manga_in.php',
-            // url: 'http://192.168.56.1/api/get_manga_in.php',
-            url: 'http://149.28.146.211/api/get_manga_in.php',
+            url: `${config.uri}/api/get_manga_in.php`,
             headers: { 'content-type': 'application/x-www-form-urlencoded' },
             data: {
                 mangain,

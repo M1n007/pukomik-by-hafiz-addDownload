@@ -1,0 +1,9 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+    var config = {
+        uri: 'http://192.168.43.142'
+    };
+    exports.default = config;
+});

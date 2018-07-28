@@ -1,0 +1,161 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.REJECTED = exports.FULFILLED = exports.PENDING = undefined;
+
+  var _slicedToArray = function () {
+    function sliceIterator(arr, i) {
+      var _arr = [];
+      var _n = true;
+      var _d = false;
+      var _e = undefined;
+
+      try {
+        for (var _i = arr[typeof Symbol === "function" ? Symbol.iterator : "@@iterator"](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+          _arr.push(_s.value);
+
+          if (i && _arr.length === i) break;
+        }
+      } catch (err) {
+        _d = true;
+        _e = err;
+      } finally {
+        try {
+          if (!_n && _i["return"]) _i["return"]();
+        } finally {
+          if (_d) throw _e;
+        }
+      }
+
+      return _arr;
+    }
+
+    return function (arr, i) {
+      if (Array.isArray(arr)) {
+        return arr;
+      } else if ((typeof Symbol === "function" ? Symbol.iterator : "@@iterator") in Object(arr)) {
+        return sliceIterator(arr, i);
+      } else {
+        throw new TypeError("Invalid attempt to destructure non-iterable instance");
+      }
+    };
+  }();
+
+  var _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  exports.default = promiseMiddleware;
+
+  var _isPromise = _require(_dependencyMap[0], './isPromise.js');
+
+  var _isPromise2 = _interopRequireDefault(_isPromise);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      default: obj
+    };
+  }
+
+  var PENDING = exports.PENDING = 'PENDING';
+  var FULFILLED = exports.FULFILLED = 'FULFILLED';
+  var REJECTED = exports.REJECTED = 'REJECTED';
+  var defaultTypes = [PENDING, FULFILLED, REJECTED];
+
+  function promiseMiddleware() {
+    var config = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    var PROMISE_TYPE_SUFFIXES = config.promiseTypeSuffixes || defaultTypes;
+    var PROMISE_TYPE_DELIMITER = config.promiseTypeDelimiter || '_';
+    return function (ref) {
+      var dispatch = ref.dispatch;
+      return function (next) {
+        return function (action) {
+          var promise = void 0;
+          var data = void 0;
+
+          if (action.payload) {
+            var PAYLOAD = action.payload;
+
+            if ((0, _isPromise2.default)(PAYLOAD)) {
+              promise = PAYLOAD;
+            } else if ((0, _isPromise2.default)(PAYLOAD.promise)) {
+                promise = PAYLOAD.promise;
+                data = PAYLOAD.data;
+              } else if (typeof PAYLOAD === 'function' || typeof PAYLOAD.promise === 'function') {
+                  promise = PAYLOAD.promise ? PAYLOAD.promise() : PAYLOAD();
+                  data = PAYLOAD.promise ? PAYLOAD.data : undefined;
+
+                  if (!(0, _isPromise2.default)(promise)) {
+                    return next(_extends({}, action, {
+                      payload: promise
+                    }));
+                  }
+                } else {
+                    return next(action);
+                  }
+          } else {
+            return next(action);
+          }
+
+          var TYPE = action.type;
+          var META = action.meta;
+
+          var _PROMISE_TYPE_SUFFIXE = _slicedToArray(PROMISE_TYPE_SUFFIXES, 3),
+              _PENDING = _PROMISE_TYPE_SUFFIXE[0],
+              _FULFILLED = _PROMISE_TYPE_SUFFIXE[1],
+              _REJECTED = _PROMISE_TYPE_SUFFIXE[2];
+
+          var getAction = function getAction(newPayload, isRejected) {
+            return _extends({
+              type: [TYPE, isRejected ? _REJECTED : _FULFILLED].join(PROMISE_TYPE_DELIMITER)
+            }, newPayload === null || typeof newPayload === 'undefined' ? {} : {
+              payload: newPayload
+            }, META !== undefined ? {
+              meta: META
+            } : {}, isRejected ? {
+              error: true
+            } : {});
+          };
+
+          var handleReject = function handleReject(reason) {
+            var rejectedAction = getAction(reason, true);
+            dispatch(rejectedAction);
+            throw reason;
+          };
+
+          var handleFulfill = function handleFulfill() {
+            var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+            var resolvedAction = getAction(value, false);
+            dispatch(resolvedAction);
+            return {
+              value: value,
+              action: resolvedAction
+            };
+          };
+
+          next(_extends({
+            type: [TYPE, _PENDING].join(PROMISE_TYPE_DELIMITER)
+          }, data !== undefined ? {
+            payload: data
+          } : {}, META !== undefined ? {
+            meta: META
+          } : {}));
+          return promise.then(handleFulfill, handleReject);
+        };
+      };
+    };
+  }
+});

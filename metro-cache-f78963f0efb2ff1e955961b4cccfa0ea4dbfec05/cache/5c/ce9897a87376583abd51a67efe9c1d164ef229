@@ -1,0 +1,361 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _react2 = _require(_dependencyMap[0], "react");
+
+  var _react3 = _interopRequireDefault(_react2);
+
+  var _index = _require(_dependencyMap[1], "./../../node_modules/react-transform-hmr/lib/index.js");
+
+  var _index2 = _interopRequireDefault(_index);
+
+  var _jsxFileName = "/home/neo/NodeJS/Rn/pukomikcom/src/screens/Pages.js";
+
+  var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+  var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+  var _reactNative = _require(_dependencyMap[2], "react-native");
+
+  var _reactNativeSwiper = _require(_dependencyMap[3], "react-native-swiper");
+
+  var _reactNativeSwiper2 = _interopRequireDefault(_reactNativeSwiper);
+
+  var _reactNativePhotoView = _require(_dependencyMap[4], "react-native-photo-view");
+
+  var _reactNativePhotoView2 = _interopRequireDefault(_reactNativePhotoView);
+
+  var _reactNativeSwipeGestures = _require(_dependencyMap[5], "react-native-swipe-gestures");
+
+  var _reactNativeSwipeGestures2 = _interopRequireDefault(_reactNativeSwipeGestures);
+
+  var _reactRedux = _require(_dependencyMap[6], "react-redux");
+
+  var _reactNativeExceptionHandler = _require(_dependencyMap[7], "react-native-exception-handler");
+
+  var _pages = _require(_dependencyMap[8], "../actions/pages");
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+  function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+  function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+  var _components = {
+    Pages: {
+      displayName: "Pages"
+    }
+  };
+
+  var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+    filename: "/home/neo/NodeJS/Rn/pukomikcom/src/screens/Pages.js",
+    components: _components,
+    locals: [module],
+    imports: [_react3.default]
+  });
+
+  function _wrapComponent(id) {
+    return function (Component) {
+      return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+    };
+  }
+
+  var _Dimensions$get = _reactNative.Dimensions.get('window'),
+      width = _Dimensions$get.width;
+
+  var loading = _require(_dependencyMap[9], '../assets/img/loading.gif');
+
+  var errorHandler = function errorHandler(e, isFatal) {
+    if (isFatal) {
+      _reactNative.Alert.alert('Unexpected error occurred', 'Maaf, terjadi kesalahan');
+    } else {
+      console.log(e);
+    }
+  };
+
+  (0, _reactNativeExceptionHandler.setJSExceptionHandler)(errorHandler, true);
+
+  var Pages = _wrapComponent("Pages")(function (_Component) {
+    _inherits(Pages, _Component);
+
+    function Pages() {
+      var _ref;
+
+      var _temp, _this, _ret;
+
+      _classCallCheck(this, Pages);
+
+      for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
+
+      return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Pages.__proto__ || Object.getPrototypeOf(Pages)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+        currentId: 0,
+        chapter: 0,
+        loadQueue: [],
+        page: {
+          index: 1,
+          total: 0
+        }
+      }, _this.getTotalPage = function () {
+        _this.setState({
+          page: _extends({}, _this.state.page, {
+            total: _this.props.pagesReducer.pageList.length
+          })
+        });
+      }, _this.onIndexChanged = function (index) {
+        _this.setState({
+          page: _extends({}, _this.state.page, {
+            index: index + 1
+          })
+        });
+      }, _this.getCurrentIndexId = function () {
+        return _this.props.chapterListReducer.data.findIndex(function (item) {
+          return item.id == _this.state.currentId;
+        });
+      }, _this.nextChapter = function () {
+        if (_this.state.page.index == _this.state.page.total) {
+          var nextChapter = _this.props.chapterListReducer.data[_this.getCurrentIndexId() - 1];
+
+          if (_this.getCurrentIndexId() == 0) {
+            alert('Anda berada di ujung chapter');
+          } else {
+            _this.setState({});
+
+            _this.props.dispatch((0, _pages.getPages)(nextChapter.id));
+          }
+        }
+      }, _this.previousChapter = function () {
+        if (_this.state.page.index == 1) {
+          var previousChapter = _this.props.chapterListReducer.data[_this.getCurrentIndexId() + 1];
+
+          if (_this.getCurrentIndexId() != _this.props.chapterListReducer.data.length - 1) {
+            _this.setState({});
+
+            _this.props.dispatch((0, _pages.getPages)(previousChapter.id));
+          }
+        }
+      }, _temp), _possibleConstructorReturn(_this, _ret);
+    }
+
+    _createClass(Pages, [{
+      key: "componentDidMount",
+      value: function componentDidMount() {
+        return regeneratorRuntime.async(function componentDidMount$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                this.setState({
+                  currentId: this.props.pagesReducer.pageList[0].chapter_id,
+                  chapter: this.props.pagesReducer.pageList[0].chapter
+                });
+                this.getTotalPage();
+
+              case 2:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, null, this);
+      }
+    }, {
+      key: "loadHandle",
+      value: function loadHandle(i) {
+        var loadQueue = this.state.loadQueue;
+        loadQueue[i] = 1;
+        this.setState({
+          loadQueue: loadQueue
+        });
+      }
+    }, {
+      key: "render",
+      value: function render() {
+        var _this2 = this;
+
+        return _react3.default.createElement(
+          _reactNative.View,
+          {
+            style: {
+              flex: 1
+            },
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 118
+            }
+          },
+          _react3.default.createElement(_reactNative.StatusBar, {
+            hidden: true,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 119
+            }
+          }),
+          _react3.default.createElement(
+            _reactNative.View,
+            {
+              style: styles.page,
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 120
+              }
+            },
+            _react3.default.createElement(
+              _reactNative.Text,
+              {
+                style: styles.pageText,
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 122
+                }
+              },
+              this.state.page.index,
+              "/",
+              this.state.page.total,
+              " #",
+              this.state.chapter
+            )
+          ),
+          _react3.default.createElement(
+            _reactNativeSwipeGestures2.default,
+            {
+              onSwipeLeft: this.nextChapter,
+              onSwipeRight: this.previousChapter,
+              style: {
+                flex: 1
+              },
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 124
+              }
+            },
+            _react3.default.createElement(
+              _reactNativeSwiper2.default,
+              {
+                showsPagination: false,
+                loadMinimal: true,
+                loadMinimalSize: 1,
+                style: styles.wrapper,
+                loop: false,
+                onIndexChanged: function onIndexChanged(index) {
+                  return _this2.onIndexChanged(index);
+                },
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 129
+                }
+              },
+              this.props.pagesReducer.pageList.map(function (item, i) {
+                return _react3.default.createElement(
+                  _reactNative.View,
+                  {
+                    style: styles.slide,
+                    __source: {
+                      fileName: _jsxFileName,
+                      lineNumber: 140
+                    }
+                  },
+                  _react3.default.createElement(_reactNativePhotoView2.default, {
+                    source: {
+                      uri: item.image
+                    },
+                    minimumZoomScale: 0.5,
+                    maximumZoomScale: 3,
+                    androidScaleType: "fitCenter",
+                    onError: function onError() {
+                      return alert('onError');
+                    },
+                    onLoad: function onLoad() {
+                      return _this2.loadHandle(i);
+                    },
+                    style: {
+                      width: _reactNative.Dimensions.get('window').width,
+                      height: _reactNative.Dimensions.get('window').height
+                    },
+                    __source: {
+                      fileName: _jsxFileName,
+                      lineNumber: 141
+                    }
+                  }),
+                  !!!_this2.state.loadQueue[i] && _react3.default.createElement(
+                    _reactNative.View,
+                    {
+                      style: styles.loadingView,
+                      __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 154
+                      }
+                    },
+                    _react3.default.createElement(_reactNative.Image, {
+                      style: styles.loadingImage,
+                      source: loading,
+                      __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 155
+                      }
+                    })
+                  )
+                );
+              })
+            )
+          )
+        );
+      }
+    }]);
+
+    return Pages;
+  }(_react2.Component));
+
+  var mapStateToProps = function mapStateToProps(state) {
+    return {
+      pagesReducer: state.pagesReducer,
+      chapterListReducer: state.chapterListReducer
+    };
+  };
+
+  exports.default = (0, _reactRedux.connect)(mapStateToProps)(Pages);
+  var styles = {
+    wrapper: {},
+    page: {
+      position: 'absolute',
+      bottom: 5,
+      left: 5,
+      backgroundColor: 'rgba(0,0,0,0.3)',
+      borderRadius: 3,
+      zIndex: 1,
+      paddingLeft: 5,
+      paddingRight: 5
+    },
+    pageText: {
+      color: 'white',
+      fontSize: 12
+    },
+    slide: {
+      flex: 1,
+      justifyContent: 'center',
+      backgroundColor: 'white'
+    },
+    image: {
+      width: width,
+      flex: 1,
+      backgroundColor: 'white'
+    },
+    loadingView: {
+      position: 'absolute',
+      justifyContent: 'center',
+      alignItems: 'center',
+      left: 0,
+      right: 0,
+      top: 0,
+      bottom: 0,
+      backgroundColor: 'white'
+    },
+    loadingImage: {
+      width: 60,
+      height: 60
+    }
+  };
+});

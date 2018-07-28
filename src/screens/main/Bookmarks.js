@@ -3,6 +3,8 @@ import {Text,StyleSheet,FlatList,TouchableNativeFeedback,Image,View} from 'react
 import {Container} from 'native-base'
 import {connect} from 'react-redux'
 
+import moment from 'moment'
+
 import * as bookmarkAction from '../../actions/bookmarks'
 
 class Manga extends PureComponent{
@@ -23,15 +25,18 @@ class Manga extends PureComponent{
                 source={{uri: this.props.img}}
                 resizeMode="cover"
                 />
-            </View>
-            <Text numberOfLines={1} style={styles.mangaTitle}>{this.props.title}</Text>
             <View style = {styles.scoreWrapper}>
-                <Text style={styles.scoreText}>Score</Text>
+                {/* <Text style={styles.scoreText}>Score</Text> */}
                 <View style={styles.scoreValueWrapper}>
                     <Text style={styles.scoreValueText}>{this.props.score}</Text>
                 </View>
             </View>
-            <Text style={styles.lChapterText}>Popularity #{this.props.popularity}</Text>
+            </View>
+            <Text numberOfLines={1} style={styles.mangaTitle}>{this.props.title}</Text>
+            
+            <Text style={styles.lChapterText}>Last Chapter {this.props.lastChapter}</Text>
+            <Text style={styles.lChapterText}>{moment(this.props.created).fromNow()}</Text>
+
         </View>
         </TouchableNativeFeedback>
         )
@@ -53,6 +58,8 @@ class Bookmarks extends Component{
             score = {item.score}
             popularity = {item.popularity}
             onPress={()=>this.props.navigation.navigate('MangaDetails',{id: item.id})}
+            lastChapter = {item.chapter}
+            created = {item.created}
         />
     )
 
@@ -111,13 +118,18 @@ const styles = StyleSheet.create({
     imageWrapper: {
         width:'100%',
         height:140,
-        backgroundColor: '#f2f2f2'
+        backgroundColor: '#f2f2f2',
+        borderRadius: 5,
+        overflow: 'hidden'
     },
     mangaTitle: {
         color: '#121212'
     },
     scoreWrapper: {
         flexDirection: 'row',
+        position: 'absolute',
+        top: 5,
+        right: 5
     },
     scoreValueWrapper:{
         width: 35,
