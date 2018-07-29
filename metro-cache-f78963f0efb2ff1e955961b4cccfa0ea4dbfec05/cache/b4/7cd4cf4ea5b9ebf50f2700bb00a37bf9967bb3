@@ -55,9 +55,6 @@ __d(function (global, _require, module, exports, _dependencyMap) {
         Manga: {
             displayName: "Manga"
         },
-        BrowseSearch: {
-            displayName: "BrowseSearch"
-        },
         Browse: {
             displayName: "Browse"
         }
@@ -207,110 +204,32 @@ __d(function (global, _require, module, exports, _dependencyMap) {
         return Manga;
     }(_react2.PureComponent));
 
-    var BrowseSearch = _wrapComponent("BrowseSearch")(function (_PureComponent2) {
-        _inherits(BrowseSearch, _PureComponent2);
+    var Browse = _wrapComponent("Browse")(function (_Component) {
+        _inherits(Browse, _Component);
 
-        function BrowseSearch() {
-            var _ref;
+        function Browse() {
+            var _ref,
+                _this3 = this;
 
             var _temp, _this2, _ret;
 
-            _classCallCheck(this, BrowseSearch);
+            _classCallCheck(this, Browse);
 
             for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
                 args[_key] = arguments[_key];
             }
 
-            return _ret = (_temp = (_this2 = _possibleConstructorReturn(this, (_ref = BrowseSearch.__proto__ || Object.getPrototypeOf(BrowseSearch)).call.apply(_ref, [this].concat(args))), _this2), _this2._keyExtractor = function (item, index) {
-                return item.id;
-            }, _this2._renderItem = function (_ref2) {
-                var item = _ref2.item;
-                return _react3.default.createElement(Manga, {
-                    img: item.img,
-                    title: item.title,
-                    score: item.score,
-                    lastChapter: item.chapter,
-                    created: item.created,
-                    onPress: function onPress() {
-                        return _this2.props.navigation.navigate('MangaDetails', {
-                            id: item.id
-                        });
-                    },
-                    __source: {
-                        fileName: _jsxFileName,
-                        lineNumber: 53
-                    }
-                });
-            }, _temp), _possibleConstructorReturn(_this2, _ret);
-        }
-
-        _createClass(BrowseSearch, [{
-            key: "render",
-            value: function render() {
-                return _react3.default.createElement(
-                    _nativeBase.Content,
-                    {
-                        __source: {
-                            fileName: _jsxFileName,
-                            lineNumber: 65
-                        }
-                    },
-                    this.props.isLoading == true ? _react3.default.createElement(_nativeBase.Spinner, {
-                        color: "#f16334",
-                        __source: {
-                            fileName: _jsxFileName,
-                            lineNumber: 68
-                        }
-                    }) : null,
-                    _react3.default.createElement(_reactNative.FlatList, {
-                        contentContainerStyle: styles.bodyWrapper,
-                        data: this.props.data,
-                        extraData: this.props.extraData,
-                        keyExtractor: this._keyExtractor,
-                        renderItem: this._renderItem,
-                        numColumns: 3,
-                        columnWrapperStyle: {
-                            justifyContent: 'space-around'
-                        },
-                        __source: {
-                            fileName: _jsxFileName,
-                            lineNumber: 71
-                        }
-                    })
-                );
-            }
-        }]);
-
-        return BrowseSearch;
-    }(_react2.PureComponent));
-
-    var Browse = _wrapComponent("Browse")(function (_Component) {
-        _inherits(Browse, _Component);
-
-        function Browse() {
-            var _ref3,
-                _this4 = this;
-
-            var _temp2, _this3, _ret2;
-
-            _classCallCheck(this, Browse);
-
-            for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-                args[_key2] = arguments[_key2];
-            }
-
-            return _ret2 = (_temp2 = (_this3 = _possibleConstructorReturn(this, (_ref3 = Browse.__proto__ || Object.getPrototypeOf(Browse)).call.apply(_ref3, [this].concat(args))), _this3), _this3.state = {
+            return _ret = (_temp = (_this2 = _possibleConstructorReturn(this, (_ref = Browse.__proto__ || Object.getPrototypeOf(Browse)).call.apply(_ref, [this].concat(args))), _this2), _this2.state = {
                 filterButton: false,
                 filter: {
                     sortBy: 'A - Z'
                 },
-                isSearch: false,
                 search: '',
                 modal: {
                     filter: false,
                     sortBy: false
                 }
-            }, _this3._retrieveData = function _callee() {
+            }, _this2._retrieveData = function _callee() {
                 var value;
                 return regeneratorRuntime.async(function _callee$(_context) {
                     while (1) {
@@ -324,7 +243,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                 value = _context.sent;
 
                                 if (value !== null) {
-                                    _this3.props.dispatch({
+                                    _this2.props.dispatch({
                                         type: 'PUSH_BOOKMARK',
                                         payload: {
                                             bookmarks: JSON.parse(value)
@@ -345,43 +264,41 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                 return _context.stop();
                         }
                     }
-                }, null, _this4, [[0, 7]]);
-            }, _this3.handleOnPull = function () {
-                _this3.getReset();
-            }, _this3.handleOnReach = function () {
-                _this3.props.dispatch(browseAction.getMangas(_this3.props.browseReducer.startPage, rows, _this3.state.filter.sortBy));
-            }, _this3.handleSearch = function () {
-                _this3.props.dispatch(browseAction.searchManga(_this3.state.search));
-            }, _this3.handleModal = function (type) {
+                }, null, _this3, [[0, 7]]);
+            }, _this2.handleOnPull = function () {
+                _this2.getReset();
+            }, _this2.handleOnReach = function () {
+                _this2.props.dispatch(browseAction.getMangas(_this2.props.browseReducer.startPage, rows, _this2.state.filter.sortBy));
+            }, _this2.handleModal = function (type) {
                 if (type == 'filter') {
-                    _this3.setState({
-                        modal: _extends({}, _this3.state.modal, {
-                            filter: !_this3.state.modal.filter
+                    _this2.setState({
+                        modal: _extends({}, _this2.state.modal, {
+                            filter: !_this2.state.modal.filter
                         })
                     });
                 }
 
                 if (type == 'sortBy') {
-                    _this3.setState({
-                        modal: _extends({}, _this3.state.modal, {
-                            sortBy: !_this3.state.modal.sortBy
+                    _this2.setState({
+                        modal: _extends({}, _this2.state.modal, {
+                            sortBy: !_this2.state.modal.sortBy
                         })
                     });
                 }
-            }, _this3.handleSortBy = function (sortBy, type) {
-                _this3.setState({
+            }, _this2.handleSortBy = function (sortBy, type) {
+                _this2.setState({
                     filter: {
                         sortBy: sortBy
                     }
                 });
 
-                _this3.handleModal(type);
+                _this2.handleModal(type);
 
-                _this3.getReset();
-            }, _this3._keyExtractor = function (item, index) {
+                _this2.getReset();
+            }, _this2._keyExtractor = function (item, index) {
                 return item.id;
-            }, _this3._renderItem = function (_ref4) {
-                var item = _ref4.item;
+            }, _this2._renderItem = function (_ref2) {
+                var item = _ref2.item;
                 return _react3.default.createElement(Manga, {
                     img: item.img,
                     title: item.title,
@@ -389,7 +306,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                     lastChapter: item.chapter,
                     created: item.created,
                     onPress: function onPress() {
-                        return _this3.props.navigation.navigate('MangaDetails', {
+                        return _this2.props.navigation.navigate('MangaDetails', {
                             id: item.id
                         });
                     },
@@ -398,16 +315,16 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         lineNumber: 181
                     }
                 });
-            }, _temp2), _possibleConstructorReturn(_this3, _ret2);
+            }, _temp), _possibleConstructorReturn(_this2, _ret);
         }
 
         _createClass(Browse, [{
             key: "componentDidMount",
             value: function componentDidMount() {
-                var _this5 = this;
+                var _this4 = this;
 
                 this.props.dispatch(browseAction.getMangas(0, rows, this.state.filter.sortBy)).then(function () {
-                    _this5.setState({
+                    _this4.setState({
                         filterButton: true
                     });
                 });
@@ -439,7 +356,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
         }, {
             key: "render",
             value: function render() {
-                var _this6 = this;
+                var _this5 = this;
 
                 return _react3.default.createElement(
                     _nativeBase.Container,
@@ -459,23 +376,15 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                             autoFocus: true,
                             placeholder: 'Search',
                             onChangeText: function onChangeText(search) {
-                                return _this6.setState({
+                                return _this5.setState({
                                     search: search
                                 });
                             },
-                            onSearchPressed: function onSearchPressed() {
-                                return _this6.setState({
-                                    isSearch: true,
-                                    filterButton: false
+                            onSubmitEditing: function onSubmitEditing() {
+                                return _this5.props.navigation.navigate('Search', {
+                                    search: _this5.state.search
                                 });
-                            },
-                            onSearchClosed: function onSearchClosed() {
-                                return _this6.setState({
-                                    isSearch: false,
-                                    filterButton: true
-                                });
-                            },
-                            onSubmitEditing: this.handleSearch
+                            }
                         },
                         rightElement: {
                             menu: {
@@ -504,7 +413,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                             style: styles.filterWrappper,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 219
+                                lineNumber: 220
                             }
                         },
                         _react3.default.createElement(
@@ -512,11 +421,11 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                             {
                                 background: _reactNative.TouchableNativeFeedback.SelectableBackground(),
                                 onPress: function onPress() {
-                                    return _this6.handleModal('sortBy');
+                                    return _this5.handleModal('sortBy');
                                 },
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 229
+                                    lineNumber: 230
                                 }
                             },
                             _react3.default.createElement(
@@ -525,7 +434,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                     style: styles.filterItem,
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 233
+                                        lineNumber: 234
                                     }
                                 },
                                 this.state.filter.sortBy == null ? _react3.default.createElement(
@@ -534,7 +443,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                         style: styles.filterText,
                                         __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 235
+                                            lineNumber: 236
                                         }
                                     },
                                     "Sort by"
@@ -544,7 +453,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                         style: styles.filterSortByValueWrapper,
                                         __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 237
+                                            lineNumber: 238
                                         }
                                     },
                                     _react3.default.createElement(_nativeBase.Icon, {
@@ -552,7 +461,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                         style: styles.filterSortByValue,
                                         __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 238
+                                            lineNumber: 239
                                         }
                                     }),
                                     _react3.default.createElement(
@@ -561,7 +470,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                             style: styles.filterTextBold,
                                             __source: {
                                                 fileName: _jsxFileName,
-                                                lineNumber: 239
+                                                lineNumber: 240
                                             }
                                         },
                                         this.state.filter.sortBy
@@ -570,37 +479,16 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                             )
                         )
                     ) : null,
-                    this.state.isSearch == true ? _react3.default.createElement(
-                        Animatable.View,
-                        {
-                            animation: "",
-                            style: styles.searchWrapper,
-                            __source: {
-                                fileName: _jsxFileName,
-                                lineNumber: 251
-                            }
-                        },
-                        _react3.default.createElement(BrowseSearch, {
-                            isLoading: this.props.browseReducer.isLoading,
-                            data: this.props.browseReducer.dataSearch,
-                            extraData: this.props.browseReducer.dataSearch,
-                            navigation: this.props.navigation,
-                            __source: {
-                                fileName: _jsxFileName,
-                                lineNumber: 252
-                            }
-                        })
-                    ) : null,
                     _react3.default.createElement(
                         _reactNativeModal2.default,
                         {
                             isVisible: this.state.modal.sortBy,
                             onBackButtonPress: function onBackButtonPress() {
-                                return _this6.handleModal('sortBy');
+                                return _this5.handleModal('sortBy');
                             },
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 263
+                                lineNumber: 264
                             }
                         },
                         _react3.default.createElement(
@@ -609,7 +497,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                 style: styles.modalWrapper,
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 267
+                                    lineNumber: 268
                                 }
                             },
                             _react3.default.createElement(
@@ -618,7 +506,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                     style: styles.modalItem,
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 268
+                                        lineNumber: 269
                                     }
                                 },
                                 _react3.default.createElement(
@@ -628,12 +516,12 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                             backgroundColor: 'white'
                                         },
                                         onPress: function onPress() {
-                                            return _this6.handleSortBy('A - Z', 'sortBy');
+                                            return _this5.handleSortBy('A - Z', 'sortBy');
                                         },
                                         full: true,
                                         __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 269
+                                            lineNumber: 270
                                         }
                                     },
                                     _react3.default.createElement(
@@ -644,7 +532,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                             },
                                             __source: {
                                                 fileName: _jsxFileName,
-                                                lineNumber: 270
+                                                lineNumber: 271
                                             }
                                         },
                                         "A - Z"
@@ -657,12 +545,12 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                             backgroundColor: 'white'
                                         },
                                         onPress: function onPress() {
-                                            return _this6.handleSortBy('Z - A', 'sortBy');
+                                            return _this5.handleSortBy('Z - A', 'sortBy');
                                         },
                                         full: true,
                                         __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 272
+                                            lineNumber: 273
                                         }
                                     },
                                     _react3.default.createElement(
@@ -673,7 +561,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                             },
                                             __source: {
                                                 fileName: _jsxFileName,
-                                                lineNumber: 273
+                                                lineNumber: 274
                                             }
                                         },
                                         "Z - A"
@@ -686,12 +574,12 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                             backgroundColor: 'white'
                                         },
                                         onPress: function onPress() {
-                                            return _this6.handleSortBy('Score', 'sortBy');
+                                            return _this5.handleSortBy('Score', 'sortBy');
                                         },
                                         full: true,
                                         __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 278
+                                            lineNumber: 279
                                         }
                                     },
                                     _react3.default.createElement(
@@ -702,7 +590,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                             },
                                             __source: {
                                                 fileName: _jsxFileName,
-                                                lineNumber: 279
+                                                lineNumber: 280
                                             }
                                         },
                                         "Score"
@@ -715,12 +603,12 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                             backgroundColor: 'white'
                                         },
                                         onPress: function onPress() {
-                                            return _this6.handleSortBy('Last Update', 'sortBy');
+                                            return _this5.handleSortBy('Last Update', 'sortBy');
                                         },
                                         full: true,
                                         __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 281
+                                            lineNumber: 282
                                         }
                                     },
                                     _react3.default.createElement(
@@ -731,7 +619,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                             },
                                             __source: {
                                                 fileName: _jsxFileName,
-                                                lineNumber: 282
+                                                lineNumber: 283
                                             }
                                         },
                                         "Last Update"
@@ -756,7 +644,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         },
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 288
+                            lineNumber: 289
                         }
                     })
                 );

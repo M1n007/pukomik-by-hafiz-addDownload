@@ -6,6 +6,7 @@ import {mangaDetailsReducer} from './mangaDetails'
 import {chapterListReducer} from './chapterList'
 import {pagesReducer} from './pages'
 import {bookmarksReducer} from './bookmarks'
+import {searchReducer} from './search'
 
 const AppReducer = combineReducers({
   nav,
@@ -13,7 +14,8 @@ const AppReducer = combineReducers({
   mangaDetailsReducer,
   chapterListReducer,
   pagesReducer,
-  bookmarksReducer
+  bookmarksReducer,
+  searchReducer
 });
 
 export default AppReducer;

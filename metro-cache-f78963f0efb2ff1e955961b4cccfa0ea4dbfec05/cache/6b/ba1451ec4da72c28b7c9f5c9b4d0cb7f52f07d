@@ -32,7 +32,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
 
   var _Downloads2 = _interopRequireDefault(_Downloads);
 
-  var _Search = _require(_dependencyMap[7], "./main/Search");
+  var _Search = _require(_dependencyMap[7], "./Search");
 
   var _Search2 = _interopRequireDefault(_Search);
 

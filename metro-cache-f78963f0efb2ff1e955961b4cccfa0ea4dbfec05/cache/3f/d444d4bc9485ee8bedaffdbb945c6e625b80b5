@@ -128,6 +128,16 @@ __d(function (global, _require, module, exports, _dependencyMap) {
             navigationOptions: {
                 header: null
             }
+        },
+        Search: {
+            screen: Screens.Search,
+            navigationOptions: {
+                title: 'Search',
+                headerTintColor: 'white',
+                headerStyle: {
+                    backgroundColor: '#f16334'
+                }
+            }
         }
     }, {});
     exports.default = RootNavigator;

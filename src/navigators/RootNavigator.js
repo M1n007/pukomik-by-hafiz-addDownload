@@ -126,18 +126,16 @@ const RootNavigator = createStackNavigator({
             header: null
         }
     },
-    // BrowseM: {
-    //     screen: Screens.BrowseM,
-    //     navigationOptions: {
-    //         header: null
-    //     }
-    // },
-    // Testing: {
-    //     screen: Screens.Testing,
-    //     navigationOptions: {
-    //         header: null
-    //     }
-    // }
+    Search: {
+        screen: Screens.Search,
+        navigationOptions: {
+            title: 'Search',
+            headerTintColor: 'white',
+            headerStyle: {
+                backgroundColor: '#f16334'
+            },
+        }
+    },
 }, {
     // headerMode: 'none',
 })

@@ -7,7 +7,7 @@ import PagesLoader from './PagesLoader'
 import Bookmarks from './main/Bookmarks'
 import Browse from './main/Browse'
 import Downloads from './main/Downloads'
-import Search from './main/Search'
+import Search from './Search'
 
 // import BrowseM from './BrowseM'
 // import Testing from './Testing'

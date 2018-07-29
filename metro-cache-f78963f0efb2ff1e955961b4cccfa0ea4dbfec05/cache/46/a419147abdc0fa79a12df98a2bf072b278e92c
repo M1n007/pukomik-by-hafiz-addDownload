@@ -19,6 +19,8 @@ __d(function (global, _require, module, exports, _dependencyMap) {
 
   var _bookmarks = _require(_dependencyMap[6], "./bookmarks");
 
+  var _search = _require(_dependencyMap[7], "./search");
+
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
   var AppReducer = (0, _redux.combineReducers)({
@@ -27,7 +29,8 @@ __d(function (global, _require, module, exports, _dependencyMap) {
     mangaDetailsReducer: _mangaDetails.mangaDetailsReducer,
     chapterListReducer: _chapterList.chapterListReducer,
     pagesReducer: _pages.pagesReducer,
-    bookmarksReducer: _bookmarks.bookmarksReducer
+    bookmarksReducer: _bookmarks.bookmarksReducer,
+    searchReducer: _search.searchReducer
   });
   exports.default = AppReducer;
 });

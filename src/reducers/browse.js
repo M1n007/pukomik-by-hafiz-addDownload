@@ -1,7 +1,7 @@
 const initialState = {
     data: [],
     dataSearch: [],
-    bookmarks: [],
+    // bookmarks: [],
     startPage: 0,
     isLoading: false,
     isFailed: false,

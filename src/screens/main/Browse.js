@@ -45,44 +45,44 @@ class Manga extends PureComponent{
     }
 }
 
-class BrowseSearch extends PureComponent{
+// class BrowseSearch extends PureComponent{
 
-    _keyExtractor = (item, index) => item.id
+//     _keyExtractor = (item, index) => item.id
 
-    _renderItem = ({item}) => (
-        <Manga
-            img = {item.img}
-            title = {item.title}
-            score = {item.score}
-            lastChapter = {item.chapter}
-            created = {item.created}
-            onPress={()=>this.props.navigation.navigate('MangaDetails',{id: item.id})}
-        />
-    )
+//     _renderItem = ({item}) => (
+//         <Manga
+//             img = {item.img}
+//             title = {item.title}
+//             score = {item.score}
+//             lastChapter = {item.chapter}
+//             created = {item.created}
+//             onPress={()=>this.props.navigation.navigate('MangaDetails',{id: item.id})}
+//         />
+//     )
  
-    render(){
-        return( 
-                <Content>
+//     render(){
+//         return( 
+//                 <Content>
                     
-                    {this.props.isLoading == true ? (
-                        <Spinner color='#f16334' />
-                    ): null}
+//                     {this.props.isLoading == true ? (
+//                         <Spinner color='#f16334' />
+//                     ): null}
 
-                    <FlatList
-                        contentContainerStyle = {styles.bodyWrapper}
-                        data={this.props.data}
-                        extraData={this.props.extraData}
-                        keyExtractor={this._keyExtractor}
-                        renderItem={this._renderItem}
-                        numColumns = {3}
-                        columnWrapperStyle = {
-                            {justifyContent: 'space-around'}
-                        }
-                    />
-                </Content>
-        )
-    }
-}
+//                     <FlatList
+//                         contentContainerStyle = {styles.bodyWrapper}
+//                         data={this.props.data}
+//                         extraData={this.props.extraData}
+//                         keyExtractor={this._keyExtractor}
+//                         renderItem={this._renderItem}
+//                         numColumns = {3}
+//                         columnWrapperStyle = {
+//                             {justifyContent: 'space-around'}
+//                         }
+//                     />
+//                 </Content>
+//         )
+//     }
+// }
 
 class Browse extends Component{
 
@@ -91,7 +91,7 @@ class Browse extends Component{
         filter: {
             sortBy: 'A - Z',
         },
-        isSearch: false,
+        // isSearch: false,
         search:'',
         modal: {
             filter: false,
@@ -140,10 +140,10 @@ class Browse extends Component{
         this.props.dispatch(browseAction.getMangas(this.props.browseReducer.startPage,rows,this.state.filter.sortBy))
     }
 
-    handleSearch = ()=>{
-        this.props.dispatch(browseAction.searchManga(this.state.search))
-    }
-dswws
+    // handleSearch = ()=>{
+    //     this.props.dispatch(browseAction.searchManga(this.state.search))
+    // }
+
     handleModal = (type)=>{
         if(type =='filter'){
             this.setState({
@@ -197,9 +197,10 @@ dswws
                             autoFocus: true,
                             placeholder: 'Search',
                             onChangeText: (search)=>this.setState({search}),
-                            onSearchPressed: ()=>this.setState({isSearch: true,filterButton: false}),
-                            onSearchClosed: ()=>this.setState({isSearch: false,filterButton: true}),
-                            onSubmitEditing: this.handleSearch
+                            // onSearchPressed: ()=>this.setState({isSearch: true,filterButton: false}),
+                            // onSearchPressed: ()=>this.props.navigation.navigate('Search',{search: this.state.search}),
+                            // onSearchClosed: ()=>this.setState({isSearch: false,filterButton: true}),
+                            onSubmitEditing: ()=>this.props.navigation.navigate('Search',{search: this.state.search})
                         }}
                         rightElement={{
                             menu: {
@@ -247,7 +248,7 @@ dswws
                     {/* <Text>{JSON.stringify(this.state.filter.sortBy)}</Text> */}
 
                     {/* isSearch */}
-                    {this.state.isSearch == true ?(
+                    {/* {this.state.isSearch == true ?(
                         <Animatable.View animation="" style={styles.searchWrapper}>
                             <BrowseSearch
                                 isLoading = {this.props.browseReducer.isLoading}
@@ -257,7 +258,7 @@ dswws
                             />
                         </Animatable.View>
 
-                    ): null}
+                    ): null} */}
 
                     {/* sort by */}
                     <Modal 
