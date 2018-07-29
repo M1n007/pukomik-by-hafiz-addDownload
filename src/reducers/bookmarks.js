@@ -2,7 +2,8 @@ const initialState = {
     bookmarks: [],
     data: [],
     isLoading: false,
-    isFailed: false
+    isFailed: false,
+    isComplete: false
 }
 
 const bookmarksReducer = (state = initialState,action)=>{
@@ -11,20 +12,25 @@ const bookmarksReducer = (state = initialState,action)=>{
         return {
             ...state,
             isLoading: true,
-            isFailed: false
+            isFailed: false,
+            isComplete: false
+
         }
         case 'GET_MANGA_IN_FULFILLED':
         return {
             ...state,
             isLoading: false,
             isFailed: false,
+            isComplete: true,
             data: action.payload.data.data
         }
         case 'GET_MANGA_IN_REJECTED':
         return {
             ...state,
             isLoading: false,
-            isFailed: true
+            isFailed: true,
+            isComplete: false
+
         }
 
         case 'PUSH_BOOKMARK':

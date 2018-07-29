@@ -9,7 +9,8 @@ __d(function (global, _require, module, exports, _dependencyMap) {
         bookmarks: [],
         data: [],
         isLoading: false,
-        isFailed: false
+        isFailed: false,
+        isComplete: false
     };
 
     var bookmarksReducer = function bookmarksReducer() {
@@ -20,20 +21,23 @@ __d(function (global, _require, module, exports, _dependencyMap) {
             case 'GET_MANGA_IN_PENDING':
                 return _extends({}, state, {
                     isLoading: true,
-                    isFailed: false
+                    isFailed: false,
+                    isComplete: false
                 });
 
             case 'GET_MANGA_IN_FULFILLED':
                 return _extends({}, state, {
                     isLoading: false,
                     isFailed: false,
+                    isComplete: true,
                     data: action.payload.data.data
                 });
 
             case 'GET_MANGA_IN_REJECTED':
                 return _extends({}, state, {
                     isLoading: false,
-                    isFailed: true
+                    isFailed: true,
+                    isComplete: false
                 });
 
             case 'PUSH_BOOKMARK':

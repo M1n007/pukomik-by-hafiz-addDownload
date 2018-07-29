@@ -45,45 +45,6 @@ class Manga extends PureComponent{
     }
 }
 
-// class BrowseSearch extends PureComponent{
-
-//     _keyExtractor = (item, index) => item.id
-
-//     _renderItem = ({item}) => (
-//         <Manga
-//             img = {item.img}
-//             title = {item.title}
-//             score = {item.score}
-//             lastChapter = {item.chapter}
-//             created = {item.created}
-//             onPress={()=>this.props.navigation.navigate('MangaDetails',{id: item.id})}
-//         />
-//     )
- 
-//     render(){
-//         return( 
-//                 <Content>
-                    
-//                     {this.props.isLoading == true ? (
-//                         <Spinner color='#f16334' />
-//                     ): null}
-
-//                     <FlatList
-//                         contentContainerStyle = {styles.bodyWrapper}
-//                         data={this.props.data}
-//                         extraData={this.props.extraData}
-//                         keyExtractor={this._keyExtractor}
-//                         renderItem={this._renderItem}
-//                         numColumns = {3}
-//                         columnWrapperStyle = {
-//                             {justifyContent: 'space-around'}
-//                         }
-//                     />
-//                 </Content>
-//         )
-//     }
-// }
-
 class Browse extends Component{
 
     state = {
@@ -105,8 +66,6 @@ class Browse extends Component{
             this.setState({
                 filterButton: true
             })
-
-            // alert(JSON.stringify(this.props.browseReducer))
         })
         this._retrieveData()
     }
@@ -139,10 +98,6 @@ class Browse extends Component{
     handleOnReach = ()=>{
         this.props.dispatch(browseAction.getMangas(this.props.browseReducer.startPage,rows,this.state.filter.sortBy))
     }
-
-    // handleSearch = ()=>{
-    //     this.props.dispatch(browseAction.searchManga(this.state.search))
-    // }
 
     handleModal = (type)=>{
         if(type =='filter'){
@@ -245,21 +200,6 @@ class Browse extends Component{
                         </Animatable.View>
                     ): null}
 
-                    {/* <Text>{JSON.stringify(this.state.filter.sortBy)}</Text> */}
-
-                    {/* isSearch */}
-                    {/* {this.state.isSearch == true ?(
-                        <Animatable.View animation="" style={styles.searchWrapper}>
-                            <BrowseSearch
-                                isLoading = {this.props.browseReducer.isLoading}
-                                data = {this.props.browseReducer.dataSearch}
-                                extraData = {this.props.browseReducer.dataSearch}
-                                navigation = {this.props.navigation}
-                            />
-                        </Animatable.View>
-
-                    ): null} */}
-
                     {/* sort by */}
                     <Modal 
                         isVisible={this.state.modal.sortBy}
@@ -285,6 +225,11 @@ class Browse extends Component{
                             </View>
                         </View>
                     </Modal>
+                    
+                    {this.props.browseReducer.isComplete == true && this.props.browseReducer.data.length == 0 ? (
+                        <Text style={styles.noResults}>No data..</Text>
+                    ): null}
+
                     
                     <FlatList
                         contentContainerStyle = {styles.bodyWrapper}
@@ -317,6 +262,16 @@ const mapStateToProps = (state)=>{
 export default connect(mapStateToProps)(Browse)
 
 const styles = StyleSheet.create({
+    noResults: {
+        alignSelf: 'center',
+        backgroundColor: '#F16334',
+        color: 'white',
+        padding: 5,
+        paddingLeft: 10,
+        paddingRight: 10,
+        marginTop: 10,
+        borderRadius: 50
+    },
     modalItem: {
         width: 200,
         // height: 200,

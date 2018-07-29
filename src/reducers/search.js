@@ -2,6 +2,7 @@ const initialState = {
     dataSearch: [],
     isLoading: false,
     isFailed: false,
+    isComplete: true,
 }
 
 const searchReducer = (state = initialState, action)=>{
@@ -11,20 +12,25 @@ const searchReducer = (state = initialState, action)=>{
         return {
             ...state,
             isLoading: true, 
-            isFailed: false
+            isFailed: false,
+            isComplete: false,
+
         }
         case 'SEARCH_MANGA_FULFILLED':
         return {
             ...state,
             isLoading: false, 
             isFailed: false,
+            isComplete: true,
             dataSearch: action.payload.data.data
         }
         case 'SEARCH_MANGA_REJECTED':
         return {
             ...state,
             isLoading: false, 
-            isFailed: true
+            isFailed: true,
+            isComplete: false,
+
         }
 
         case 'RESET_SEARCH':

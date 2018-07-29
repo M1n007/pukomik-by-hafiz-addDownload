@@ -252,6 +252,17 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                             lineNumber: 67
                         }
                     },
+                    this.props.searchReducer.isComplete == true && this.props.searchReducer.dataSearch.length == 0 ? _react3.default.createElement(
+                        _reactNative.Text,
+                        {
+                            style: styles.noResults,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 69
+                            }
+                        },
+                        "No results.."
+                    ) : null,
                     _react3.default.createElement(_reactNative.FlatList, {
                         refreshing: this.props.searchReducer.isLoading,
                         onRefresh: this.handlePull,
@@ -261,7 +272,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         renderItem: this._renderItem,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 68
+                            lineNumber: 71
                         }
                     })
                 );
@@ -280,6 +291,16 @@ __d(function (global, _require, module, exports, _dependencyMap) {
     exports.default = (0, _reactRedux.connect)(mapStateToProps)(Search);
 
     var styles = _reactNative.StyleSheet.create({
+        noResults: {
+            alignSelf: 'center',
+            backgroundColor: '#F16334',
+            color: 'white',
+            padding: 5,
+            paddingLeft: 10,
+            paddingRight: 10,
+            marginTop: 10,
+            borderRadius: 50
+        },
         descriptionWrapper: {
             flexDirection: 'row',
             height: 160,
@@ -289,7 +310,8 @@ __d(function (global, _require, module, exports, _dependencyMap) {
             flexDirection: 'row'
         },
         subDescriptionText: {
-            fontSize: 12
+            fontSize: 12,
+            marginBottom: 5
         },
         title: {
             color: '#121212'
@@ -299,7 +321,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
             paddingLeft: 10
         },
         synopsis: {
-            color: '#383838',
+            color: '#545454',
             fontSize: 13
         },
         mainWrapper: {

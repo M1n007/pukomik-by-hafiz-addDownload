@@ -8,7 +8,8 @@ __d(function (global, _require, module, exports, _dependencyMap) {
     var initialState = {
         dataSearch: [],
         isLoading: false,
-        isFailed: false
+        isFailed: false,
+        isComplete: true
     };
 
     var searchReducer = function searchReducer() {
@@ -19,20 +20,23 @@ __d(function (global, _require, module, exports, _dependencyMap) {
             case 'SEARCH_MANGA_PENDING':
                 return _extends({}, state, {
                     isLoading: true,
-                    isFailed: false
+                    isFailed: false,
+                    isComplete: false
                 });
 
             case 'SEARCH_MANGA_FULFILLED':
                 return _extends({}, state, {
                     isLoading: false,
                     isFailed: false,
+                    isComplete: true,
                     dataSearch: action.payload.data.data
                 });
 
             case 'SEARCH_MANGA_REJECTED':
                 return _extends({}, state, {
                     isLoading: false,
-                    isFailed: true
+                    isFailed: true,
+                    isComplete: false
                 });
 
             case 'RESET_SEARCH':

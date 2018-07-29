@@ -235,26 +235,46 @@ __d(function (global, _require, module, exports, _dependencyMap) {
         _createClass(Bookmarks, [{
             key: "render",
             value: function render() {
-                return _react3.default.createElement(_reactNative.FlatList, {
-                    style: {
-                        backgroundColor: 'white'
+                return _react3.default.createElement(
+                    _nativeBase.Container,
+                    {
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 73
+                        }
                     },
-                    contentContainerStyle: styles.bodyWrapper,
-                    refreshing: this.props.bookmarksReducer.isLoading,
-                    onRefresh: this.handleOnPull,
-                    data: this.props.bookmarksReducer.data,
-                    extraData: this.props.bookmarksReducer.data,
-                    keyExtractor: this._keyExtractor,
-                    renderItem: this._renderItem,
-                    numColumns: 3,
-                    columnWrapperStyle: {
-                        justifyContent: 'space-around'
-                    },
-                    __source: {
-                        fileName: _jsxFileName,
-                        lineNumber: 74
-                    }
-                });
+                    this.props.bookmarksReducer.isComplete == true && this.props.bookmarksReducer.bookmarks.length == 0 ? _react3.default.createElement(
+                        _reactNative.Text,
+                        {
+                            style: styles.noResults,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 75
+                            }
+                        },
+                        "No data.."
+                    ) : null,
+                    _react3.default.createElement(_reactNative.FlatList, {
+                        style: {
+                            backgroundColor: 'white'
+                        },
+                        contentContainerStyle: styles.bodyWrapper,
+                        refreshing: this.props.bookmarksReducer.isLoading,
+                        onRefresh: this.handleOnPull,
+                        data: this.props.bookmarksReducer.data,
+                        extraData: this.props.bookmarksReducer.data,
+                        keyExtractor: this._keyExtractor,
+                        renderItem: this._renderItem,
+                        numColumns: 3,
+                        columnWrapperStyle: {
+                            justifyContent: 'space-around'
+                        },
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 77
+                        }
+                    })
+                );
             }
         }]);
 
@@ -270,6 +290,16 @@ __d(function (global, _require, module, exports, _dependencyMap) {
     exports.default = (0, _reactRedux.connect)(mapStateToProps)(Bookmarks);
 
     var styles = _reactNative.StyleSheet.create({
+        noResults: {
+            alignSelf: 'center',
+            backgroundColor: '#F16334',
+            color: 'white',
+            padding: 5,
+            paddingLeft: 10,
+            paddingRight: 10,
+            marginTop: 10,
+            borderRadius: 50
+        },
         bodyWrapper: {
             backgroundColor: 'white',
             flexDirection: 'column',

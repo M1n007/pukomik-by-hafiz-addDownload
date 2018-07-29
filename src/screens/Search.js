@@ -10,7 +10,7 @@ import * as searchAction from '../actions/search'
 class Search extends Component{
     componentDidMount(){
         
-        // this.props.dispatch(searchAction.searchManga('naru'))
+        // this.props.dispatch(searchAction.searchManga('jonddd'))
 
         // search = await this.props.navigation.getParam('search')
         this.props.dispatch(searchAction.searchManga(this.props.navigation.getParam('search')))
@@ -65,6 +65,9 @@ class Search extends Component{
     render(){
         return(
             <View style={styles.mainWrapper}>
+                {this.props.searchReducer.isComplete == true && this.props.searchReducer.dataSearch.length == 0 ? (
+                    <Text style={styles.noResults}>No results..</Text>
+                ): null}
                 <FlatList
                     refreshing = {this.props.searchReducer.isLoading}
                     onRefresh = {this.handlePull}
@@ -87,6 +90,16 @@ const mapStateToProps = (state)=>{
 export default connect(mapStateToProps)(Search)
 
 const styles = StyleSheet.create({
+    noResults: {
+        alignSelf: 'center',
+        backgroundColor: '#F16334',
+        color: 'white',
+        padding: 5,
+        paddingLeft: 10,
+        paddingRight: 10,
+        marginTop: 10,
+        borderRadius: 50
+    },
     descriptionWrapper: {
         flexDirection: 'row', 
         // flex:1,
@@ -100,6 +113,7 @@ const styles = StyleSheet.create({
     },
     subDescriptionText:{
         fontSize: 12,
+        marginBottom: 5,
     },
     title: {
         color: '#121212'
@@ -109,7 +123,7 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
     },
     synopsis:{
-        color: '#383838',
+        color: '#545454',
         fontSize: 13
     },
     mainWrapper: {

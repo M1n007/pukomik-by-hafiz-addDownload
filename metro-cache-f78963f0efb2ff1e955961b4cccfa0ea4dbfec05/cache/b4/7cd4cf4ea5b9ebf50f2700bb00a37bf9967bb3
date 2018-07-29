@@ -312,7 +312,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                     },
                     __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 181
+                        lineNumber: 136
                     }
                 });
             }, _temp), _possibleConstructorReturn(_this2, _ret);
@@ -367,7 +367,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         },
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 193
+                            lineNumber: 148
                         }
                     },
                     _react3.default.createElement(_reactNativeMaterialUi.Toolbar, {
@@ -402,7 +402,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         },
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 194
+                            lineNumber: 149
                         }
                     }),
                     this.state.filterButton == true ? _react3.default.createElement(
@@ -413,7 +413,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                             style: styles.filterWrappper,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 220
+                                lineNumber: 175
                             }
                         },
                         _react3.default.createElement(
@@ -425,7 +425,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                 },
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 230
+                                    lineNumber: 185
                                 }
                             },
                             _react3.default.createElement(
@@ -434,7 +434,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                     style: styles.filterItem,
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 234
+                                        lineNumber: 189
                                     }
                                 },
                                 this.state.filter.sortBy == null ? _react3.default.createElement(
@@ -443,7 +443,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                         style: styles.filterText,
                                         __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 236
+                                            lineNumber: 191
                                         }
                                     },
                                     "Sort by"
@@ -453,7 +453,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                         style: styles.filterSortByValueWrapper,
                                         __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 238
+                                            lineNumber: 193
                                         }
                                     },
                                     _react3.default.createElement(_nativeBase.Icon, {
@@ -461,7 +461,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                         style: styles.filterSortByValue,
                                         __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 239
+                                            lineNumber: 194
                                         }
                                     }),
                                     _react3.default.createElement(
@@ -470,7 +470,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                             style: styles.filterTextBold,
                                             __source: {
                                                 fileName: _jsxFileName,
-                                                lineNumber: 240
+                                                lineNumber: 195
                                             }
                                         },
                                         this.state.filter.sortBy
@@ -488,7 +488,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                             },
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 264
+                                lineNumber: 204
                             }
                         },
                         _react3.default.createElement(
@@ -497,7 +497,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                 style: styles.modalWrapper,
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 268
+                                    lineNumber: 208
                                 }
                             },
                             _react3.default.createElement(
@@ -506,7 +506,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                     style: styles.modalItem,
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 269
+                                        lineNumber: 209
                                     }
                                 },
                                 _react3.default.createElement(
@@ -521,7 +521,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                         full: true,
                                         __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 270
+                                            lineNumber: 210
                                         }
                                     },
                                     _react3.default.createElement(
@@ -532,7 +532,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                             },
                                             __source: {
                                                 fileName: _jsxFileName,
-                                                lineNumber: 271
+                                                lineNumber: 211
                                             }
                                         },
                                         "A - Z"
@@ -550,7 +550,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                         full: true,
                                         __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 273
+                                            lineNumber: 213
                                         }
                                     },
                                     _react3.default.createElement(
@@ -561,7 +561,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                             },
                                             __source: {
                                                 fileName: _jsxFileName,
-                                                lineNumber: 274
+                                                lineNumber: 214
                                             }
                                         },
                                         "Z - A"
@@ -579,7 +579,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                         full: true,
                                         __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 279
+                                            lineNumber: 219
                                         }
                                     },
                                     _react3.default.createElement(
@@ -590,7 +590,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                             },
                                             __source: {
                                                 fileName: _jsxFileName,
-                                                lineNumber: 280
+                                                lineNumber: 220
                                             }
                                         },
                                         "Score"
@@ -608,7 +608,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                         full: true,
                                         __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 282
+                                            lineNumber: 222
                                         }
                                     },
                                     _react3.default.createElement(
@@ -619,7 +619,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                             },
                                             __source: {
                                                 fileName: _jsxFileName,
-                                                lineNumber: 283
+                                                lineNumber: 223
                                             }
                                         },
                                         "Last Update"
@@ -628,6 +628,17 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                             )
                         )
                     ),
+                    this.props.browseReducer.isComplete == true && this.props.browseReducer.data.length == 0 ? _react3.default.createElement(
+                        _reactNative.Text,
+                        {
+                            style: styles.noResults,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 230
+                            }
+                        },
+                        "No data.."
+                    ) : null,
                     _react3.default.createElement(_reactNative.FlatList, {
                         contentContainerStyle: styles.bodyWrapper,
                         refreshing: this.props.browseReducer.isLoading,
@@ -644,7 +655,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         },
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 289
+                            lineNumber: 234
                         }
                     })
                 );
@@ -663,6 +674,16 @@ __d(function (global, _require, module, exports, _dependencyMap) {
     exports.default = (0, _reactRedux.connect)(mapStateToProps)(Browse);
 
     var styles = _reactNative.StyleSheet.create({
+        noResults: {
+            alignSelf: 'center',
+            backgroundColor: '#F16334',
+            color: 'white',
+            padding: 5,
+            paddingLeft: 10,
+            paddingRight: 10,
+            marginTop: 10,
+            borderRadius: 50
+        },
         modalItem: {
             width: 200,
             backgroundColor: 'white',

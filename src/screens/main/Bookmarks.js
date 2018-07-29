@@ -70,7 +70,10 @@ class Bookmarks extends Component{
     render(){
         return(
             // <Text>{JSON.stringify(this.props.bookmarksReducer.data)}</Text>
-            // <Container>
+            <Container>
+                {this.props.bookmarksReducer.isComplete == true && this.props.bookmarksReducer.bookmarks.length == 0 ? (
+                    <Text style={styles.noResults}>No data..</Text>
+                ): null}
                 <FlatList
                         style={{backgroundColor: 'white'}}
                         contentContainerStyle = {styles.bodyWrapper}
@@ -87,7 +90,7 @@ class Bookmarks extends Component{
                             {justifyContent: 'space-around'}
                         }
                     />
-            // </Container>
+            </Container>
         )
     }
 }
@@ -101,6 +104,16 @@ const mapStateToProps = (state)=>{
 export default connect(mapStateToProps)(Bookmarks)
 
 const styles = StyleSheet.create({
+    noResults: {
+        alignSelf: 'center',
+        backgroundColor: '#F16334',
+        color: 'white',
+        padding: 5,
+        paddingLeft: 10,
+        paddingRight: 10,
+        marginTop: 10,
+        borderRadius: 50
+    },
     bodyWrapper: {
         backgroundColor: 'white',
         flexDirection: 'column',
